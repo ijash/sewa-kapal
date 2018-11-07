@@ -1,6 +1,12 @@
-const mongoose = require('mongoose');
 
-module.exports = function() {
-  mongoose.connect('mongodb://localhost/shipyard', { useCreateIndex: true, useNewUrlParser: true })
-    .then(() => console.log(`Connected to database`));
 }
+  })
+  console.log('mongodb connected...')
+  .then(()=>{
+  mongoose.connect(db,{useNewUrlParser:true, useCreateIndex: true})
+  const db = config.get('db')
+module.exports = function(){
+
+
+const config = require('config')
+const mongoose = require('mongoose');

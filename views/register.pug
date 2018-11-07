@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Registrasi
+    //- link(href="../res/css/materialize.css", rel="stylesheet")
+    link(rel="stylesheet", href="/css/materialize.css")
+  body
+    nav.cyan(role="navigation")
+      .nav-wrapper.container
+        a#logo-container.brand-logo(href='/')=judul
+        ul.right.hide-on-med-and-down
+          li 
+            a(href='/') Home
+          li 
+            a(href='#') Categories
+          li 
+            a(href='#') About
+
+          li 
+            a.waves-effect.waves-light.cyan.btn.modal-trigger(href='#modal_login') Login
+        br
+    h4.center.shadow REGISTRASI
+    .container
+      form(action=regisAction, method="post")
+        label(for='name')
+          b Nama
+        input(type='text' placeholder='Nama lengkap' name='name' required)
+
+        label(for='email')
+          b Email
+        input(type='email' placeholder='nama@domain.com' name='email' required)
+
+        label(for='password')
+          b Password
+        input(type='password' placeholder='masukkan password' name='password' required)
+
+        label(for='phone')
+          b Telpon
+        input(type='tel' placeholder='081234567890' name='phone' required)
+
+        label(for='address')
+          b Alamat
+        input(type='text' placeholder='Masukkan alamat lengkap anda' name='address' required)
+        p
+          label
+            input(type="checkbox" required)
+            span Saya setuju dengan semua peraturan yang telah ditentukan.
+          button(type='submit').waves-light.cyan.btn.right Daftar
+  // Modal Structure
+#modal_login.modal
+  .modal-content
+    h4.header.center.dark-text.text-lighten-2 Login
+    form(action=loginAction, method="post")
+      .container
+        label(for='uname')
+          b E-mail
+        input(type='text' placeholder='Enter E-mail' name='email' required='')
+        label(for='psw')
+          b Password
+        input(type='password' placeholder='Enter Password' name='password' required='')
+        p
+          label
+            input(type="checkbox")
+            span Ingat saya.
+            button(type='submit').waves-light.cyan.btn.right Login
+            
+              
+
+        a(href=registrasi).left Belum punya akun?
+        a.modal-close.waves-effect.waves-light.btn-flat(href='#').right  Cancel
+    .modal-footer
+  script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+  script(src='/js/materialize.js')
+  script(src='/js/init.js')
