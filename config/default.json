@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "sk_jwtkey",
+  "db":"mongodb://localhost/sewakapal"
+}

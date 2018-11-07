@@ -10,19 +10,19 @@ html(lang="en")
     
 
   body
-    nav(class="blue" role="navigation")
+    nav.cyan(role="navigation")
       .nav-wrapper.container
-        a#logo-container.brand-logo(href='#')=judul
+        a#logo-container.brand-logo(href='/')=judul
         ul.right.hide-on-med-and-down
           li 
-            a(href='#') Home
+            a(href='/') Home
           li 
             a(href='#') Categories
           li 
             a(href='#') About
 
           li 
-            a.waves-effect.waves-light.blue.btn.modal-trigger(href='#modal1') Login
+            a.waves-effect.waves-light.cyan.btn.modal-trigger(href='#modal_login') Login
     #index-banner.parallax-container     
       .section.no-pad-bot
         .container
@@ -32,13 +32,13 @@ html(lang="en")
           .row.center
             h5.header.col.s12.light "Petualangan tanpa batas di hamparan samudera"
           .row.center
-            a#download-button.btn-large.waves-effect.waves-light.blue.lighten-1(href=kategoriKapal) mulai
+            a#download-button.btn-large.waves-effect.waves-light.cyan.lighten-1(href=kategoriKapal) mulai
       .parallax
         img(src='/img/bg-main.jpg' alt='Unsplashed background img 2')
     .container
           .section
 
-  footer.page-footer.blue
+  footer.page-footer.cyan
     .container
       .row
         .col.l6.s12
@@ -72,34 +72,32 @@ html(lang="en")
         | Made by 
         a.brown-text.text-lighten-3(href='github.com/ijash') Ijash
   // Modal Structure
-#modal1.modal
+#modal_login.modal
   .modal-content
     h4.header.center.dark-text.text-lighten-2 Login
     form(action=loginAction, method="post")
-
       .container
         label(for='uname')
-          b Username
-        input(type='text' placeholder='Enter Username' name='uname' required='')
+          b E-mail
+        input(type='text' placeholder='Enter E-mail' name='email' required='')
         label(for='psw')
           b Password
-        input(type='password' placeholder='Enter Password' name='psw' required='')
+        input(type='password' placeholder='Enter Password' name='password' required='')
         p
           label
             input(type="checkbox")
             span Ingat saya.
-            button(type='submit').waves-light.blue.btn.right Login
+            button(type='submit').waves-light.cyan.btn.right Login
             
               
 
         a(href=registrasi).left Belum punya akun?
-        a.modal-close.waves-effect.waves-light.btn-flat(href='#!').right  Cancel
+        a.modal-close.waves-effect.waves-light.btn-flat(href='#').right  Cancel
     .modal-footer
-      
 
 
-      script(src='https://code.jquery.com/jquery-2.1.1.min.js')
-      script(src='/js/materialize.js')
-      script(src='/js/init.js')
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    script(src='/js/materialize.js')
+    script(src='/js/init.js')
 
         
