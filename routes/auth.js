@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
   if (!user) return res.status(400).send('Invalid email or password');
 
   const validPassword = await bcrypt.compare(req.body.password, user.password)
-  if (!validPassword) return res.status(400).send('Invalid email or password');
+  if (!user) return res.redirect('../error/404?details=invalid username or password...');
   
   const token = user.generateAuthToken(); 
   res.send(token);// buat pug
