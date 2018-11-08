@@ -123,13 +123,18 @@ function validateShip(ship) {
   return Joi.validate(ship, schema);
 };
 
-function validateQuery(query) {
+function cleanNullValue(query) {
   for (i in query) {
+    if (typeof query[i] === "object") {
+      for (n in query[i]) {
+        if (!query[i][n]) delete query[i][n]
+      };
+    };
     if (!query[i]) delete query[i]
-  }
+  };
   return query
-}
+};
 
-exports.validateQuery = validateQuery
+exports.cleanNullValue = cleanNullValue
 exports.Ship = Ship
 exports.validate = validateShip

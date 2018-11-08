@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const _ = require('lodash');
-const { validateQuery, Ship, validate } = require('../models/ship');
+const { cleanNullValue, Ship, validate } = require('../models/ship');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -45,9 +45,7 @@ router.put('/:id', async (req, res) => { // tambahin auth untuk admin
   const { error } = validate(req.body)
   if (error) return res.status(400).send(error.details[0].message);
 
-
-
-  const ship = await Ship.findByIdAndUpdate(req.params.id, {
+  let query = {
     name: req.body.name,
     model: req.body.model,
     type: req.body.type,
@@ -68,26 +66,24 @@ router.put('/:id', async (req, res) => { // tambahin auth untuk admin
       numberOfBerths: req.body.numberOfBerths,
       location: req.body.location
     }
-  }, { new: true });
-  const updatedShip = validateQuery(ship.details);
-
-
+  }
+  cleanNullValue(query);
+  const ship = await Ship.findByIdAndUpdate(req.params.id, query, { new: true });
 
   if (!ship) return res.status(404).send('Id not found.');
 
-  res.send(updatedShip);
+  res.send(ship); // view untuk konfirmasi berhasil
 });
 
 router.delete('/:id', async (req, res) => { // tambahin auth untuk admin
   const ship = await Ship.findByIdAndDelete(req.params.id);
   if (!ship) return res.status(404).send('Id not found.');
 
-  res.send(ship);
+  res.send(ship); // view untuk konfirmasi berhasil
 });
 
 router.get('/:id', async (req, res) => {
   const ship = await Ship.findById(req.params.id);
-  // 404 not found
   if (!ship) return res.status(404).send('Id not found.');
 
   res.send(ship);
