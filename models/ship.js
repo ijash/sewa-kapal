@@ -94,7 +94,7 @@ const Ship = mongoose.model('Ships', new mongoose.Schema({
   },
   available: {
     type: Boolean,
-    default: true
+    required: true
   }
 }));
 
@@ -117,11 +117,19 @@ function validateShip(ship) {
     numberOfCabins: Joi.number().min(1).max(100),
     numberOfBerths: Joi.number().min(1).max(100),
     location: Joi.string(),
-    available: Joi.boolean()
+    available: Joi.boolean().required()
   };
 
   return Joi.validate(ship, schema);
 };
 
+function validateQuery(query) {
+  for (i in query) {
+    if (!query[i]) delete query[i]
+  }
+  return query
+}
+
+exports.validateQuery = validateQuery
 exports.Ship = Ship
 exports.validate = validateShip
