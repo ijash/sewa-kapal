@@ -18,6 +18,7 @@ let currentYear = new Date
 
 $(document).ready(function() {
   $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
     maxDate: new Date(Date.now()),
     setDefaultDate: true,
     defaultDate: new Date(Date.now()),

@@ -45,9 +45,9 @@ html(lang="en")
         label(for='type')
           b Tipe Kapal
         .input-field.col.s12
-          select
+          select(name='type')
             option(value='' disabled='' selected='') Pilih Tipe Kapal
-            option(value='kecil' ) Kecil (cth: Sampan, Speed Boat, Jet Ski)
+            option(value='kecil') Kecil (cth: Sampan, Speed Boat, Jet Ski)
             option(value='sedang') Sedang (cth: Yacht, Kapal Nelayan, Kapal Tunda)
             option(value='besar') Besar (cth: Tanker, Cruise Ship, Container Ship)
         
@@ -75,8 +75,8 @@ html(lang="en")
         input(type='text' placeholder='Dalam Satuan Meter' name='draft')
 
         label(for='displacement')
-          b Panjang Kapal
-        input(type='text' placeholder='Dalam Satuan Meter' name='displacement')
+          b Berat Kapal
+        input(type='text' placeholder='Dalam Satuan Kg' name='displacement')
     
         label(for='engine')
           b Mesin Kapal
@@ -85,12 +85,12 @@ html(lang="en")
         label(for='type')
           b Tipe Kapal
         .input-field.col.s12
-          select
+          select(name='fuel')
             option(value='' disabled='' selected='') Bahan Bakar Kapal
             option(value='diesel' ) diesel
             option(value='electric') electric
             option(value='gas') gas
-            option(value='gasoliner') gasoline
+            option(value='gasoline') gasoline
             option(value='steam') steam
       
         label(for='fuelCapacity')
@@ -99,7 +99,7 @@ html(lang="en")
         
         label(for='maximumSpeed')
           b Kecepatan Maksimal
-        input(type='text' placeholder='Dalam Satuan Km/J' name='engine')
+        input(type='text' placeholder='Dalam Satuan Km/J' name='maximumSpeed')
         
         label(for='cruisingSpeed')
           b Kecepatan Berlayar
@@ -111,7 +111,13 @@ html(lang="en")
         
         label(for='numberOfBerths')
           b Kapasitas Penumpang
-        input(type='text' placeholder='Kapasitas Penumpang' name='numberOfBerths')  
+        input(type='text' placeholder='Kapasitas Penumpang' name='numberOfBerths')
+        p
+          label
+          button(type='submit').waves-light.cyan.btn.right Daftar
+          br
+          br
+          br
         
   // Modal Structure
 #modal_login.modal

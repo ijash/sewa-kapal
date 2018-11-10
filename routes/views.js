@@ -48,8 +48,10 @@ router.get('/error/:code', async (req, res) => {
   res.status(req.params.code).render('./error', pageVariables);
 });
 
-router.get('/ships', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {});
+router.get('/admin/ships', async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {
+    inputKapal: "/api/ships"
+  });
   res.render('./admin/ships', pageVariables);
 });
 
