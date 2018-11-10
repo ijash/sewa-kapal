@@ -58,7 +58,9 @@ const Ship = mongoose.model('Ships', new mongoose.Schema({
         max: 2000
       },
       engine: {
-        type: String
+        type: String,
+        minlength: 3,
+        maxlength: 50
       },
       fuel: {
         type: String,
@@ -88,13 +90,12 @@ const Ship = mongoose.model('Ships', new mongoose.Schema({
         type: Number,
         min: 1,
         max: 100
-      },
-      location: { type: String }
+      }
     }
   },
   available: {
     type: Boolean,
-    required: true
+    default: true
   }
 }));
 
@@ -104,20 +105,19 @@ function validateShip(ship) {
     model: Joi.string().min(3).max(50).required(),
     type: Joi.string().valid('besar', 'sedang', 'kecil').required(),
     price: Joi.number().min(0).max(1000000000).required(),
-    yearOfManufactured: Joi.date().format('YYYY-MM-DD'),
+    yearOfManufactured: Joi.date().format('YYYY-MM-DD').required(),
     lengthOverall: Joi.number().min(3).max(1000),
     beam: Joi.number().min(1).max(250),
     draft: Joi.number().min(1).max(250),
     displacement: Joi.number().min(5).max(2000),
-    engine: Joi.string(),
+    engine: Joi.string().min(3).max(50),
     fuel: Joi.string().valid('diesel', 'electric', 'gas', 'gasoline', 'steam'),
     fuelCapacity: Joi.number().min(20).max(10000),
     maximumSpeed: Joi.number().min(10).max(200),
     cruisingSpeed: Joi.number().min(10).max(200),
     numberOfCabins: Joi.number().min(1).max(100),
     numberOfBerths: Joi.number().min(1).max(100),
-    location: Joi.string(),
-    available: Joi.boolean().required()
+    available: Joi.boolean()
   };
 
   return Joi.validate(ship, schema);

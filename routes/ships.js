@@ -30,8 +30,7 @@ router.post('/', async (req, res) => { // tambahin auth untuk admin
       maximumSpeed: req.body.maximumSpeed,
       cruisingSpeed: req.body.cruisingSpeed,
       numberOfCabins: req.body.numberOfCabins,
-      numberOfBerths: req.body.numberOfBerths,
-      location: req.body.location
+      numberOfBerths: req.body.numberOfBerths
     }
   })
 
@@ -62,8 +61,7 @@ router.put('/:id', async (req, res) => { // tambahin auth untuk admin
       maximumSpeed: req.body.maximumSpeed,
       cruisingSpeed: req.body.cruisingSpeed,
       numberOfCabins: req.body.numberOfCabins,
-      numberOfBerths: req.body.numberOfBerths,
-      location: req.body.location
+      numberOfBerths: req.body.numberOfBerths
     }
   }
   cleanNullValue(query);
