@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const express = require('express');
 const _ = require('lodash');
 const { cleanNullValue, Ship, validate } = require('../models/ship');
