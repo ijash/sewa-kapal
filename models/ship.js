@@ -2,9 +2,13 @@ const BaseJoi = require('joi');
 const Extension = require('joi-date-extensions')
 const Joi = BaseJoi.extend(Extension)
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 
-const shipSchema = new mongoose.Schema({
+const Ship = mongoose.model('Ships', new mongoose.Schema({
+  picture: {
+    type: String,
+    required: true,
+    maxlength: 4096
+  },
   name: {
     type: String,
     required: true,
@@ -98,11 +102,7 @@ const shipSchema = new mongoose.Schema({
       }
     }
   }
-});
-
-// shipSchema.plugin(uniqueValidator, { message: 'Error, expected {PATH} to be unique.' });
-
-const Ship = mongoose.model('Ships', shipSchema);
+}));
 
 function validateShip(ship) {
   const schema = {
