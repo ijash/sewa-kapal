@@ -11,16 +11,15 @@ let defaultSiteValues = {
   }
 
 router.get('/', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues,{
-  });
-  res.render('./home/index',pageVariables);
+  const pageVariables = Object.assign(defaultSiteValues, {});
+  res.render('./home/index', pageVariables);
 });
 
 router.get('/register', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues,{
+  const pageVariables = Object.assign(defaultSiteValues, {
     regisAction: "/api/users/"
   });
-  res.render('./register',pageVariables);
+  res.render('./register', pageVariables);
 });
 
 router.get('/error/:code', async (req, res) => {
@@ -37,17 +36,23 @@ router.get('/error/:code', async (req, res) => {
     501: 'Not Implemented'
   };
 
-  
-  if (!statusCodeList[req.params.code]) currentStatus = '501' ,req.query.details = `${req.params.code} status code is not implemented yet`
+  if (!statusCodeList[req.params.code]) currentStatus = '501', req.query.details = `${req.params.code} status code is not implemented yet`
   if (!req.query.details) req.query.details = "we're not sure what was just happened..."
-  
-  const pageVariables = Object.assign(defaultSiteValues,{
-    status:currentStatus,
-    statusDefinition:statusCodeList[currentStatus] ,
-    errorDetails:req.query.details
+
+  const pageVariables = Object.assign(defaultSiteValues, {
+    status: currentStatus,
+    statusDefinition: statusCodeList[currentStatus],
+    errorDetails: req.query.details
   });
 
-  res.status(req.params.code).render('./error',pageVariables);
+  res.status(req.params.code).render('./error', pageVariables);
+});
+
+router.get('/admin/ships', async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {
+    inputKapal: "/api/ships"
+  });
+  res.render('./admin/ships', pageVariables);
 });
 
 module.exports = router;

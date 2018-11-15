@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Input kapal
+    //- link(href="../res/css/materialize.css", rel="stylesheet")
+    link(rel="stylesheet", href="/css/materialize.css")
+  body
+    nav.cyan(role="navigation")
+      .nav-wrapper.container
+        a#logo-container.brand-logo(href='/')=judul
+        ul.right.hide-on-med-and-down
+          li 
+            a(href='/') Home
+          li 
+            a(href='#') Categories
+          li 
+            a(href='#') About
+
+          li 
+            a.waves-effect.waves-light.cyan.btn.modal-trigger(href='#modal_login') Login
+        br
+    h4.center.shadow INPUT KAPAL
+    .container
+      form(action=inputKapal, method="post")
+        label(for='picture')
+          b Masukan Gambar
+        .file-field.input-field
+          .btn
+            span File
+            input(type='file' name="picture")
+          .file-path-wrapper
+            input.file-path.validate(type='text')
+            
+        label(for='name')
+          b Nama
+        input(type='text' placeholder='Nama kapal' name='name' required)
+          
+        label(for='model')
+          b Model
+        input(type='text' placeholder='Merk dan Model' name='model' required)
+        
+        label(for='type')
+          b Tipe Kapal
+        .input-field.col.s12
+          select(name='type')
+            option(value='' disabled='' selected='') Pilih Tipe Kapal
+            option(value='kecil') Kecil (cth: Sampan, Speed Boat, Jet Ski)
+            option(value='sedang') Sedang (cth: Yacht, Kapal Nelayan, Kapal Tunda)
+            option(value='besar') Besar (cth: Tanker, Cruise Ship, Container Ship)
+        
+        label(for='price')
+          b Harga
+        input(type='text' placeholder='Masukan Harga Dalam Rupiah' name='price' required)
+        br
+        br
+        b Detail Kapal
+        br
+        label(for='yearOfManufactured')
+          b Tanggal Pembuatan
+        input.datepicker(type='text' placeholder='Tanggal Pembuatan' name='yearOfManufactured' yearRange[10])
+              
+        label(for='lengthOverall')
+          b Panjang Kapal
+        input(type='text' placeholder='Dalam Satuan Meter' name='lengthOverall')
+    
+        label(for='beam')
+          b Ukuran Beam
+        input(type='text' placeholder='Dalam Satuan Meter' name='beam')
+
+        label(for='draft')
+          b ukuran draft
+        input(type='text' placeholder='Dalam Satuan Meter' name='draft')
+
+        label(for='displacement')
+          b Berat Kapal
+        input(type='text' placeholder='Dalam Satuan Kg' name='displacement')
+    
+        label(for='engine')
+          b Mesin Kapal
+        input(type='text' placeholder='Tipe Mesin Kapal' name='engine')
+    
+        label(for='type')
+          b Tipe Kapal
+        .input-field.col.s12
+          select(name='fuel')
+            option(value='' disabled='' selected='') Bahan Bakar Kapal
+            option(value='diesel' ) diesel
+            option(value='electric') electric
+            option(value='gas') gas
+            option(value='gasoline') gasoline
+            option(value='steam') steam
+      
+        label(for='fuelCapacity')
+          b Kapasitas Bahan Bakar
+        input(type='text' placeholder='Dalam Satuan Liter' name='fuelCapacity')
+        
+        label(for='maximumSpeed')
+          b Kecepatan Maksimal
+        input(type='text' placeholder='Dalam Satuan Km/J' name='maximumSpeed')
+        
+        label(for='cruisingSpeed')
+          b Kecepatan Berlayar
+        input(type='text' placeholder='Dalam Satuan Km/J' name='cruisingSpeed')
+        
+        label(for='numberOfCabins')
+          b Jumlah Kabin
+        input(type='text' placeholder='Jumlah Kabin' name='numberOfCabins')
+        
+        label(for='numberOfBerths')
+          b Kapasitas Penumpang
+        input(type='text' placeholder='Kapasitas Penumpang' name='numberOfBerths')
+        p
+          label
+          button(type='submit').waves-light.cyan.btn.right Daftar
+          br
+          br
+          br
+        
+  // Modal Structure
+#modal_login.modal
+  .modal-content
+    h4.header.center.dark-text.text-lighten-2 Login
+    form(action=loginAction, method="post")
+      .container
+        label(for='uname')
+          b E-mail
+        input(type='text' placeholder='Enter E-mail' name='email' required='')
+        label(for='psw')
+          b Password
+        input(type='password' placeholder='Enter Password' name='password' required='')
+        p
+          label
+            input(type="checkbox")
+            span Ingat saya.
+            button(type='submit').waves-light.cyan.btn.right Login
+            
+              
+
+        a(href=registrasi).left Belum punya akun?
+        a.modal-close.waves-effect.waves-light.btn-flat(href='#').right  Cancel
+    .modal-footer
+  script(src='/js/jquery-3.3.1.min.js')
+  script(src='/js/materialize.js')
+  script(type='text/javascript' src='/js/init.js')
