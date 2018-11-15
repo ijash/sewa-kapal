@@ -2,8 +2,9 @@ const BaseJoi = require('joi');
 const Extension = require('joi-date-extensions')
 const Joi = BaseJoi.extend(Extension)
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
-const Ship = mongoose.model('Ships', new mongoose.Schema({
+const shipSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -27,6 +28,10 @@ const Ship = mongoose.model('Ships', new mongoose.Schema({
     required: true,
     min: 0,
     max: 1000000000000
+  },
+  available: {
+    type: Boolean,
+    default: true
   },
   details: {
     type: {
@@ -92,12 +97,12 @@ const Ship = mongoose.model('Ships', new mongoose.Schema({
         max: 100
       }
     }
-  },
-  available: {
-    type: Boolean,
-    default: true
   }
-}));
+});
+
+// shipSchema.plugin(uniqueValidator, { message: 'Error, expected {PATH} to be unique.' });
+
+const Ship = mongoose.model('Ships', shipSchema);
 
 function validateShip(ship) {
   const schema = {
@@ -106,19 +111,19 @@ function validateShip(ship) {
     model: Joi.string().min(3).max(50).required(),
     type: Joi.string().valid('besar', 'sedang', 'kecil').required(),
     price: Joi.number().min(0).max(1000000000).required(),
+    available: Joi.boolean(),
     yearOfManufactured: Joi.date().format('YYYY-MM-DD').required(),
-    lengthOverall: Joi.number().min(3).max(1000),
-    beam: Joi.number().min(1).max(250),
-    draft: Joi.number().min(1).max(250),
-    displacement: Joi.number().min(5).max(2000),
-    engine: Joi.string().min(3).max(50),
-    fuel: Joi.string().valid('diesel', 'electric', 'gas', 'gasoline', 'steam'),
-    fuelCapacity: Joi.number().min(20).max(10000),
-    maximumSpeed: Joi.number().min(10).max(200),
-    cruisingSpeed: Joi.number().min(10).max(200),
-    numberOfCabins: Joi.number().min(1).max(100),
-    numberOfBerths: Joi.number().min(1).max(100),
-    available: Joi.boolean()
+    lengthOverall: Joi.number().min(3).max(1000).allow(null).allow(''),
+    beam: Joi.number().min(1).max(250).allow(null).allow(''),
+    draft: Joi.number().min(1).max(250).allow(null).allow(''),
+    displacement: Joi.number().min(5).max(2000).allow(null).allow(''),
+    engine: Joi.string().min(3).max(50).allow(null).allow(''),
+    fuel: Joi.string().valid('diesel', 'electric', 'gas', 'gasoline', 'steam').allow(null).allow(''),
+    fuelCapacity: Joi.number().min(20).max(10000).allow(null).allow(''),
+    maximumSpeed: Joi.number().min(10).max(200).allow(null).allow(''),
+    cruisingSpeed: Joi.number().min(10).max(200).allow(null).allow(''),
+    numberOfCabins: Joi.number().min(1).max(100).allow(null).allow(''),
+    numberOfBerths: Joi.number().min(1).max(100).allow(null).allow('')
   };
 
   return Joi.validate(ship, schema);

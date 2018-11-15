@@ -12,7 +12,7 @@ router.post('/', async (req, res) => { // tambahin auth untuk admin
   const { error } = validate(req.body)
   if (error) return res.status(400).send(error.details[0].message);
 
-  const ship = new Ship({
+  let query = {
     name: req.body.name,
     model: req.body.model,
     type: req.body.type,
@@ -20,7 +20,7 @@ router.post('/', async (req, res) => { // tambahin auth untuk admin
     available: req.body.available,
     details: {
       yearOfManufactured: req.body.yearOfManufactured,
-      lengthOveral: req.body.lengthOveral,
+      lengthOverall: req.body.lengthOverall,
       beam: req.body.beam,
       draft: req.body.draft,
       displacement: req.body.displacement,
@@ -32,11 +32,13 @@ router.post('/', async (req, res) => { // tambahin auth untuk admin
       numberOfCabins: req.body.numberOfCabins,
       numberOfBerths: req.body.numberOfBerths
     }
-  })
+  }
+  cleanNullValue(query);
 
-  await ship.save();
+  const ship = new Ship(query);
+  ship.save();
+  res.send(ship);
 
-  res.send(ship); // kasih view atau ganti ke pug
 });
 
 router.put('/:id', async (req, res) => { // tambahin auth untuk admin
@@ -65,11 +67,16 @@ router.put('/:id', async (req, res) => { // tambahin auth untuk admin
     }
   }
   cleanNullValue(query);
-  const ship = await Ship.findByIdAndUpdate(req.params.id, query, { new: true });
 
-  if (!ship) return res.status(404).send('Id not found.');
+  try {
+    const ship = await Ship.findOneAndUpdate(req.params.id, query, { new: true, runValidators: true, context: 'query' });
 
-  res.send(ship); // view untuk konfirmasi berhasil
+    if (!ship) return res.status(404).send('Id not found.');
+
+    res.send(ship); // view untuk konfirmasi berhasil
+  } catch (err) {
+    res.send(err.message)
+  }
 });
 
 router.delete('/:id', async (req, res) => { // tambahin auth untuk admin
