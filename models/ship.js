@@ -3,7 +3,7 @@ const Extension = require('joi-date-extensions')
 const Joi = BaseJoi.extend(Extension)
 const mongoose = require('mongoose');
 
-const Ship = mongoose.model('Ships', new mongoose.Schema({
+const Ship = mongoose.model('ships', new mongoose.Schema({
   name: {
     type: String,
     required: true,

@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 let defaultSiteValues = {
-    judul:'B.E.B.E.',
+    judul:'bebas',
     kategoriKapal:"#",
     registrasi:"/register",
     loginAction: "/api/auth",
