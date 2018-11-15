@@ -2,9 +2,13 @@ const BaseJoi = require('joi');
 const Extension = require('joi-date-extensions')
 const Joi = BaseJoi.extend(Extension)
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 
-const shipSchema = new mongoose.Schema({
+const Ship = mongoose.model('Ships', new mongoose.Schema({
+  picture: {
+    type: String,
+    required: true,
+    maxlength: 4096
+  },
   name: {
     type: String,
     required: true,
@@ -60,7 +64,7 @@ const shipSchema = new mongoose.Schema({
       displacement: {
         type: Number,
         min: 5,
-        max: 2000
+        max: 2000000
       },
       engine: {
         type: String,
@@ -98,11 +102,7 @@ const shipSchema = new mongoose.Schema({
       }
     }
   }
-});
-
-// shipSchema.plugin(uniqueValidator, { message: 'Error, expected {PATH} to be unique.' });
-
-const Ship = mongoose.model('Ships', shipSchema);
+}));
 
 function validateShip(ship) {
   const schema = {
@@ -116,7 +116,7 @@ function validateShip(ship) {
     lengthOverall: Joi.number().min(3).max(1000).allow(null).allow(''),
     beam: Joi.number().min(1).max(250).allow(null).allow(''),
     draft: Joi.number().min(1).max(250).allow(null).allow(''),
-    displacement: Joi.number().min(5).max(2000).allow(null).allow(''),
+    displacement: Joi.number().min(5).max(2000000).allow(null).allow(''),
     engine: Joi.string().min(3).max(50).allow(null).allow(''),
     fuel: Joi.string().valid('diesel', 'electric', 'gas', 'gasoline', 'steam').allow(null).allow(''),
     fuelCapacity: Joi.number().min(20).max(10000).allow(null).allow(''),
