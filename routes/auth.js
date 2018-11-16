@@ -16,8 +16,16 @@ router.post('/', async (req, res) => {
   if (!validPassword) return res.redirect('../error/404?details=invalid username or password...');
   
   const token = user.generateAuthToken(); 
-  res.send(token);// buat pug
+  res.cookie('x_auth_token',token,{maxAge:518400000, httpOnly: true});
+  res.redirect('/')
 });
+router.get('/logout', async (req, res) => {
+  res.clearCookie("x_auth_token")
+  res.redirect('/')
+
+});
+
+
 
 function validate(req) {
 

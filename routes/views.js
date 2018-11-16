@@ -1,18 +1,27 @@
 const pug = require('pug');
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 
 let defaultSiteValues = {
-    judul:'bebas',
+    judul:'SEWAKAPAL',
     kategoriKapal:"#",
     registrasi:"/register",
     loginAction: "/api/auth",
-    colorTheme: 'blue'
+    colorTheme: 'blue',
+   // userAuthStatus: req.header('x-auth-token')
   }
 
 router.get('/', async (req, res) => {
   const pageVariables = Object.assign(defaultSiteValues, {});
   res.render('./home/index', pageVariables);
+  
+});
+
+router.get('/myaccount', auth, async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {});
+  res.render('./user/account', pageVariables);
+  
 });
 
 router.get('/register', async (req, res) => {

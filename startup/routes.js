@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser')
 
 const users = require('../routes/users');
 const auth = require('../routes/auth')
@@ -11,11 +12,14 @@ const ships = require('../routes/ships');
 module.exports = function(app) {
   app.set('view engine', 'pug')
   app.set('views', './views')
-  //for reading application/x-www-form-urlencoded on POST method
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
+
   app.use('/public', express.static('public'));
 
+  app.use(cookieParser())
+//for reading application/x-www-form-urlencoded on POST method
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+  
 
   app.use('/api/users', users);
   app.use('/api/auth', auth);

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Akun Saya
+    link(rel="stylesheet", href="public/css/materialize.css")
+
+
+
+  body
+    nav.cyan(role="navigation")
+      .nav-wrapper.container
+        a#logo-container.brand-logo(href='/')=judul
+        ul.right.hide-on-med-and-down
+          li 
+            a(href='/') Home
+          li 
+            a(href='#') Categories
+          li 
+            a(href='#') About
+
+          li 
+            a.waves-effect.waves-light.cyan.btn.modal-trigger#authStatus(href='#modal_login') Login
+
+        
+
+    h4.center Akun saya
+    br
+    ul.collection.container.z-depth-4
+      li.collection-item
+        p(style="float:left;width:10%;min-width: 50px")  Nama
+        p#nama -
+      li.collection-item
+        p(style="float:left;width:10%;min-width: 50px")  Telepon
+        p#telpon -
+      li.collection-item
+        p(style="float:left;width:10%;min-width: 50px")  E-Mail
+        p#email -
+      li.collection-item
+        p(style="float:left;width:10%;min-width: 50px") Alamat
+        p#alamat(style="float:left;width:50%") -
+    br
+    br
+    .center
+      button.waves-effect.waves-light.cyan.btn#logout logout
+
+#modal_login.modal
+  .modal-content
+    h4.header.center.dark-text.text-lighten-2 Login
+    form(action=loginAction, method="post")
+      .container
+        label(for='uname')
+          b E-mail
+        input(type='text' placeholder='Enter E-mail' name='email' required='')
+        label(for='psw')
+          b Password
+        input(type='password' placeholder='Enter Password' name='password' required='')
+        p
+          label
+            input(type="checkbox")
+            span Ingat saya.
+            button(type='submit').waves-light.cyan.btn.right Login
+            
+              
+
+        a(href=registrasi).left Belum punya akun?
+        a.modal-close.waves-effect.waves-light.btn-flat(href='#').right  Cancel
+    .modal-footer
+    script(src='public/js/jquery-3.3.1.min.js')
+    script(src='public/js/materialize.js')
+    script(src='public/js/init.js')
+    script.
+      function loadUser(){
+        document.getElementById('nama').firstChild.textContent = userData.name;
+        document.getElementById('telpon').firstChild.textContent = userData.phone;
+        document.getElementById('email').firstChild.textContent = userData.email;
+        document.getElementById('alamat').firstChild.textContent = userData.address;
+        };
+        addLoadEvent(loadUser);
+        
+        let btnLogout = document.getElementById('logout')
+        btnLogout.addEventListener("click",function(){
+          window.location.replace('api/auth/logout');
+          });
+
+        
+
+      
