@@ -4,24 +4,37 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 
 let defaultSiteValues = {
-    judul:'SEWAKAPAL',
-    kategoriKapal:"#",
-    registrasi:"/register",
-    loginAction: "/api/auth",
-    colorTheme: 'blue',
-   // userAuthStatus: req.header('x-auth-token')
-  }
+  judul: 'SEWAKAPAL',
+  kategoriKapal: '/categories',
+  registrasi: "/register",
+  loginAction: "/api/auth",
+  colorTheme: 'blue',
+  about: '/about'
+  // userAuthStatus: req.header('x-auth-token')
+}
 
 router.get('/', async (req, res) => {
   const pageVariables = Object.assign(defaultSiteValues, {});
   res.render('./home/index', pageVariables);
-  
+
 });
 
 router.get('/myaccount', auth, async (req, res) => {
   const pageVariables = Object.assign(defaultSiteValues, {});
   res.render('./user/account', pageVariables);
-  
+
+});
+
+router.get('/about', auth, async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {});
+  res.render('./home/about', pageVariables);
+
+});
+
+router.get('/categories', auth, async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {});
+  res.render('./home/categories', pageVariables);
+
 });
 
 router.get('/register', async (req, res) => {

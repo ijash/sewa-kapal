@@ -110,7 +110,7 @@ function validateShip(ship) {
     name: Joi.string().min(3).max(25).required(),
     model: Joi.string().min(3).max(50).required(),
     type: Joi.string().valid('besar', 'sedang', 'kecil').required(),
-    price: Joi.number().min(0).max(1000000000).required(),
+    price: Joi.number().min(0).max(1000000000000).required(),
     available: Joi.boolean(),
     yearOfManufactured: Joi.date().format('YYYY-MM-DD').required(),
     lengthOverall: Joi.number().min(3).max(1000).allow(null).allow(''),
