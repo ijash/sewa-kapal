@@ -9,6 +9,7 @@ let defaultSiteValues = {
   registrasi: "/register",
   loginAction: "/api/auth",
   colorTheme: 'teal lighten-1',
+  colorThemeText: 'teal',
   about: '/about'
   // userAuthStatus: req.header('x-auth-token')
 }
@@ -50,7 +51,7 @@ router.get('/register', async (req, res) => {
   res.render('./home/register', pageVariables);
 });
 
-router.get('/home/error/:code', async (req, res) => {
+router.get('/error/:code', async (req, res) => {
   let currentStatus = req.params.code
   statusCodeList = {
     301: 'Moved Permanently',
@@ -73,7 +74,7 @@ router.get('/home/error/:code', async (req, res) => {
     errorDetails: req.query.details
   });
 
-  res.status(req.params.code).render('./error', pageVariables);
+  res.status(req.params.code).render('./home/error', pageVariables);
 });
 
 router.get('/admin/ships', async (req, res) => {

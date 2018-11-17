@@ -1,47 +1,19 @@
-<!DOCTYPE html>
+doctype html
 html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title Daftar kapal
-    //- link(href="../res/css/materialize.css", rel="stylesheet")
-    link(rel="stylesheet", href="/public/css/materialize.css")
-    link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+  include ../includes/head.pug
+  title Sewa Kapal
   body
-    nav(role="navigation" class= `${colorTheme}`)
-      .nav-wrapper.container
-        a#logo-container.brand-logo(href='/')=judul
-        ul.right.hide-on-med-and-down
-          li 
-            a(href='/') Home
-          li 
-            a(href=kategoriKapal) Categories
-          li 
-            a(href=about) About
-
-          li 
-            a.waves-effect.waves-light.btn.modal-trigger#authStatus(href='#modal_login' class= `${colorTheme}`) Login
-        br
+    include ../includes/header.pug
+    .container
+      .section
         .row#row
-        
-  // Modal Structure
-#modal_login.modal
-  .modal-content
-    h4.header.center.dark-text.text-lighten-2 Login
-    form(action=loginAction, method="post")
-      .container
-        label(for='uname')
-          b E-mail
-        input(type='text' placeholder='Enter E-mail' name='email' required='')
-        label(for='psw')
-          b Password
-        input(type='password' placeholder='Enter Password' name='password' required='')
-        p
-          label
-            input(type="checkbox")
-            span Ingat saya.
-            button(type='submit').waves-light.btn.right Login
+    img(src='public/img/site/bg-main.jpg' alt='Background Image' style="object-fit: cover;")
+    br
+    
+      
+    include ../includes/footer.pug
+    include ../includes/loginmodal.pug
+    include ../includes/script.pug  
             
               
 
@@ -56,17 +28,17 @@ html(lang="en")
   script.
     function loadShip() {
       let row = document.getElementById('row');
-      let htmlColor = "#{colorTheme}"
+      let htmlColor = "#{colorThemeText}"
       
       for(i in shipData){
          
         row.insertAdjacentHTML("afterbegin",
-        `<div class="col s3">
+        `<div class="col s3" style="min-width: 15em;">
           <div class="card z-depth-2">
             <div class="card-image waves-effect waves-block waves-light">
-              <object data="/public/img/site/noshippic.png" type="image/png" style="width:100%;height:14.8em;object-fit: cover;">
-                <img class="activator" id="gambar" src="/" alt="Boat" style="width:100%;height:14.8em;object-fit: cover;" />
-               </object>
+
+                <img class="activator responsive-img" id="gambar" src="/" alt="Boat" onerror="this.onerror=null;this.src='/public/img/site/noshippic.png';" style="width:100%;height:14.8em;object-fit: cover;" />
+
             </div>
             <div class="card-content"><span class="card-title activator ${htmlColor}-text text-darken-4" id="nama">-</span>
               <p><a class="btn ${htmlColor}" href="#">Pesan</a></p>
