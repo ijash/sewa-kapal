@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Sewa Kapal
+    //- link(href="../res/css/materialize.css", rel="stylesheet")
+    link(rel="stylesheet", href="public/css/materialize.css")
+    
+
+  body
+    nav(role="navigation" class= `${colorTheme}`)
+      .nav-wrapper.container
+        a#logo-container.brand-logo(href='/')=judul
+        ul.right.hide-on-med-and-down
+          li 
+            a(href='/') Home
+          li 
+            a(href=kategoriKapal) Categories
+          li 
+            a(href=about) About
+
+          li 
+            a.waves-effect.waves-light.btn.modal-trigger#authStatus(href='#modal_login' class= `${colorTheme}`) Login
+           
+    #index-banner.parallax-container     
+      .section.no-pad-bot
+        .container
+          br
+          br
+          h1.header.center.dark-text.text-lighten-2=judul
+          .row.center
+            h5.header.col.s12.light "Petualangan tanpa batas di hamparan samudera"
+          .row.center
+            a#download-button.btn-large.waves-effect.waves-light.lighten-1(href=kategoriKapal class= `${colorTheme}`) mulai
+      .parallax
+        img(src='public/img/site/bg-main.jpg' alt='Unsplashed background img 2' style="width: 100%;object-fit: cover;")
+    .container
+          .section
+
+  footer.page-footer(class= `${colorTheme}`)
+    .container
+      .row
+        .col.l6.s12
+          h5.white-text Company Bio
+          p.grey-text.text-lighten-4
+            | We are a team of college students working on this project like it&apos;s our full time job. Any amount would help support and continue development on this project and is greatly appreciated.
+        .col.l3.s12
+          h5.white-text Links
+          ul
+            li
+              a.white-text(href='/') Home
+            li
+              a.white-text(href=kategoriKapal) Ship Category
+            li
+              a.white-text(href=about) About
+        .col.l3.s12
+          h5.white-text Connect
+          ul
+            li
+              a.white-text(href='#!') Link 1
+            li
+              a.white-text(href='#!') Link 2
+            li
+              a.white-text(href='#!') Link 3
+            li
+              a.white-text(href='#!') Link 4
+    .footer-copyright
+      .container
+        | Made by 
+        a.brown-text.text-lighten-3(href='github.com/ijash') Ijash
+  // Modal Structure
+#modal_login.modal
+  .modal-content
+    h4.header.center.dark-text.text-lighten-2 Login
+    form(action=loginAction, method="post")
+      .container
+        label(for='uname')
+          b E-mail
+        input(type='text' placeholder='Enter E-mail' name='email' required='')
+        label(for='psw')
+          b Password
+        input(type='password' placeholder='Enter Password' name='password' required='')
+        p
+          label
+            input(type="checkbox")
+            span Ingat saya.
+            button(type='submit' class= `${colorTheme}`).waves-light.btn.right Login
+            
+              
+
+        a(href=registrasi).left Belum punya akun?
+        a.modal-close.waves-effect.waves-light.btn-flat(href='#').right  Cancel
+    .modal-footer
+
+
+    script(src='public/js/jquery-3.3.1.min.js')
+    script(src='public/js/materialize.js')
+    script(src='public/js/init.js')
+    script(src="")
+
+        

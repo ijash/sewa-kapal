@@ -8,19 +8,19 @@ html(lang="en")
     //- link(href="../res/css/materialize.css", rel="stylesheet")
     link(rel="stylesheet", href="/public/css/materialize.css")
   body
-    nav.cyan(role="navigation")
+    nav(role="navigation" class= `${colorTheme}`)
       .nav-wrapper.container
         a#logo-container.brand-logo(href='/')=judul
         ul.right.hide-on-med-and-down
           li 
             a(href='/') Home
           li 
-            a(href='#') Categories
+            a(href=kategoriKapal) Categories
           li 
-            a(href='#') About
+            a(href=about) About
 
           li 
-            a.waves-effect.waves-light.cyan.btn.modal-trigger(href='#modal_login') Login
+            a.waves-effect.waves-light.btn.modal-trigger#authStatus(href='#modal_login' class= `${colorTheme}`) Login
         br
     h4.center.shadow INPUT KAPAL
     .container
@@ -114,7 +114,7 @@ html(lang="en")
         input(type='text' placeholder='Kapasitas Penumpang' name='numberOfBerths')
         p
           label
-          button(type='submit').waves-light.cyan.btn.right Daftar
+          button(type='submit' class= `${colorTheme}`).waves-light.btn.right Daftar
           br
           br
           br
@@ -135,7 +135,7 @@ html(lang="en")
           label
             input(type="checkbox")
             span Ingat saya.
-            button(type='submit').waves-light.cyan.btn.right Login
+            button(type='submit').waves-light.btn.right Login
             
               
 

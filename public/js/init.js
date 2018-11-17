@@ -1,24 +1,24 @@
 let currentYear = new Date;
 
-(function ($) {
-  $(function () {
+(function($) {
+  $(function() {
 
     $('.sidenav').sidenav();
     $('.parallax').parallax();
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space
-$(document).ready(function () {
+$(document).ready(function() {
   $('.modal').modal();
 });
 
-$(document).ready(function () {
+$(document).ready(function() {
   $('select').formSelect();
 });
 
 
 
-$(document).ready(function () {
+$(document).ready(function() {
   $('.datepicker').datepicker({
     format: 'yyyy-mm-dd',
     maxDate: new Date(Date.now()),
@@ -32,7 +32,7 @@ let httpReq = new XMLHttpRequest();
 //auth ajax
 let userData = null
 httpReq.open('GET', '/api/users/me');
-httpReq.onload = function () {
+httpReq.onload = function() {
   userData = JSON.parse(httpReq.responseText);
 
 }
@@ -42,11 +42,13 @@ httpReq.send();
 function changeAuthStatus() {
   if (!userData) {
 
-  }
-  else {
+  } else {
     authStatus = document.getElementById('authStatus');
     authStatus.href = '/myaccount'
     authStatus.innerText = userData.name
+    authStatusMobile = document.getElementById('authStatusMobile');
+    authStatusMobile.href = '/myaccount'
+    authStatusMobile.innerText = userData.name
   }
 }
 

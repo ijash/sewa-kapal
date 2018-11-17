@@ -1,0 +1,27 @@
+
+.navbar-fixed
+  nav(role="navigation" class= `${colorTheme}`)
+        .nav-wrapper.container
+          a#logo-container.brand-logo(href='/')=judul
+          ul.right.hide-on-med-and-down
+            li 
+              a(href='/') Home
+            li 
+              a(href=kategoriKapal) Categories
+            li 
+              a(href=about) About
+
+            li 
+              a.waves-effect.waves-light.btn.modal-trigger#authStatus(href='#modal_login' class= `${colorTheme}`) Login
+          ul#nav-mobile.sidenav
+            li
+              a.waves-effect.waves-light.btn.modal-trigger#authStatusMobile(href='#modal_login' class= `${colorTheme}`) Login
+            li 
+              a(href='/') Home
+            li 
+              a(href=kategoriKapal) Categories
+            li 
+              a(href=about) About
+          a.sidenav-trigger(href='#' data-target='nav-mobile')
+            i.material-icons menu
+        

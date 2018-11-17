@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Daftar kapal
+    //- link(href="../res/css/materialize.css", rel="stylesheet")
+    link(rel="stylesheet", href="/public/css/materialize.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+  body
+    nav(role="navigation" class= `${colorTheme}`)
+      .nav-wrapper.container
+        a#logo-container.brand-logo(href='/')=judul
+        ul.right.hide-on-med-and-down
+          li 
+            a(href='/') Home
+          li 
+            a(href=kategoriKapal) Categories
+          li 
+            a(href=about) About
+
+          li 
+            a.waves-effect.waves-light.btn.modal-trigger#authStatus(href='#modal_login' class= `${colorTheme}`) Login
+        br
+        .row#row
+        
+  // Modal Structure
+#modal_login.modal
+  .modal-content
+    h4.header.center.dark-text.text-lighten-2 Login
+    form(action=loginAction, method="post")
+      .container
+        label(for='uname')
+          b E-mail
+        input(type='text' placeholder='Enter E-mail' name='email' required='')
+        label(for='psw')
+          b Password
+        input(type='password' placeholder='Enter Password' name='password' required='')
+        p
+          label
+            input(type="checkbox")
+            span Ingat saya.
+            button(type='submit').waves-light.btn.right Login
+            
+              
+
+        a(href=registrasi).left Belum punya akun?
+        a.modal-close.waves-effect.waves-light.btn-flat(href='#').right  Cancel
+    .modal-footer
+      
+  script(src='/public/js/jquery-3.3.1.min.js')
+  script(src='/public/js/materialize.js')
+  script(src='/public/js/init.js')
+  script(src='/public/js/shipInit.js')
+  script.
+    function loadShip() {
+      let row = document.getElementById('row');
+      let htmlColor = "#{colorTheme}"
+      
+      for(i in shipData){
+         
+        row.insertAdjacentHTML("afterbegin",
+        `<div class="col s3">
+          <div class="card z-depth-2">
+            <div class="card-image waves-effect waves-block waves-light">
+              <object data="/public/img/site/noshippic.png" type="image/png" style="width:100%;height:14.8em;object-fit: cover;">
+                <img class="activator" id="gambar" src="/" alt="Boat" style="width:100%;height:14.8em;object-fit: cover;" />
+               </object>
+            </div>
+            <div class="card-content"><span class="card-title activator ${htmlColor}-text text-darken-4" id="nama">-</span>
+              <p><a class="btn ${htmlColor}" href="#">Pesan</a></p>
+            </div>
+            <div class="card-reveal"><span class="card-title ${htmlColor}-text text-darken-4" id="model">-<i class="material-icons right">close</i></span>
+              <p class="${htmlColor}-text text-darken-4" id="tipe">-</p>
+              <p class="${htmlColor}-text text-darken-4" id="harga">-</p>
+              <p class="${htmlColor}-text text-darken-4" id="tanggalPembuatan">-</p>
+              <p class="${htmlColor}-text text-darken-4" id="panjangKapal">-</p>
+              <p class="${htmlColor}-text text-darken-4" id="panjangBeam">-</p>
+            </div>
+          </div>
+        </div>`);
+        
+        document.getElementById('gambar').src = shipData[i].picture;
+        document.getElementById('nama').firstChild.textContent = shipData[i].name;
+        document.getElementById('model').firstChild.textContent = shipData[i].model;
+        document.getElementById('tipe').firstChild.textContent = `Tipe Kapal: ${shipData[i].type}`;
+        document.getElementById('harga').firstChild.textContent = `Harga Kapal: ${shipData[i].price}`;
+        document.getElementById('tanggalPembuatan').firstChild.textContent = `Tanggal Pembuatan: ${shipData[i].details.yearOfManufactured}`;
+        document.getElementById('panjangKapal').firstChild.textContent = `Panjang Kapal: ${shipData[i].details.lengthOverall}`;
+        document.getElementById('panjangBeam').firstChild.textContent = `Panjang Beam: ${shipData[i].details.beam}`
+      }
+    };
+    addLoadEvent(loadShip)  
+    

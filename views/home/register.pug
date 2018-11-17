@@ -1,27 +1,10 @@
 <!DOCTYPE html>
 html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title Registrasi
-    //- link(href="../res/css/materialize.css", rel="stylesheet")
-    link(rel="stylesheet", href="public/css/materialize.css")
+  include ../includes/head.pug
+  title Registrasi
   body
-    nav.cyan(role="navigation")
-      .nav-wrapper.container
-        a#logo-container.brand-logo(href='/')=judul
-        ul.right.hide-on-med-and-down
-          li 
-            a(href='/') Home
-          li 
-            a(href='#') Categories
-          li 
-            a(href='#') About
-
-          li 
-            a.waves-effect.waves-light.cyan.btn.modal-trigger(href='#modal_login') Login
-        br
+    include ../includes/header.pug
+      br
     h4.center.shadow REGISTRASI
     .container
       form(action=regisAction, method="post")
@@ -48,7 +31,7 @@ html(lang="en")
           label
             input(type="checkbox" required)
             span Saya setuju dengan semua peraturan yang telah ditentukan.
-          button(type='submit').waves-light.cyan.btn.right Daftar
+          button(type='submit' class= `${colorTheme}`).waves-light.btn.right Daftar
   // Modal Structure
 #modal_login.modal
   .modal-content

@@ -5,17 +5,16 @@ head
   title Parallax Template - Materialize
   // CSS
   link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
-  link(href='css/materialize.css' type='text/css' rel='stylesheet' media='screen,projection')
-  link(href='css/materialize.css' type='text/css' rel='stylesheet' media='screen,projection')
-nav.white(role='navigation')
+  link(href='public/css/materialize.css' type='text/css' rel='stylesheet' media='screen,projection')
+nav.teal(role='navigation')
   .nav-wrapper.container
     a#logo-container.brand-logo(href='#') Logo
     ul.right.hide-on-med-and-down
       li
-        a(href='#') Navbar Link
+        a(href='#') Navbar Link1
     ul#nav-mobile.sidenav
       li
-        a(href='#') Navbar Link
+        a(href='#') Navbar Linkm
     a.sidenav-trigger(href='#' data-target='nav-mobile')
       i.material-icons menu
 #index-banner.parallax-container
@@ -31,7 +30,7 @@ nav.white(role='navigation')
       br
       br
   .parallax
-    img(src='/img/bg-main.jpg' alt='Unsplashed background img 1')
+    img(src='public/img/site/bg-main.jpg' alt='Unsplashed background img 1')
 .container
   .section
     // Icon Section
@@ -63,7 +62,7 @@ nav.white(role='navigation')
       .row.center
         h5.header.col.s12.light A modern responsive front-end framework based on Material Design
   .parallax
-    img(src='/img/bg-main.jpg' alt='Unsplashed background img 2')
+    img(src='public/img/site/bg-main2.jpg' alt='Unsplashed background img 2')
 .container
   .section
     .row
@@ -79,7 +78,7 @@ nav.white(role='navigation')
       .row.center
         h5.header.col.s12.light A modern responsive front-end framework based on Material Design
   .parallax
-    img(src='/img/bg-main.jpg' alt='Unsplashed background img 3')
+    img(src='public/img/site/bg-main3.jpg' alt='Unsplashed background img 3')
 footer.page-footer.teal
   .container
     .row
@@ -115,5 +114,5 @@ footer.page-footer.teal
       a.brown-text.text-lighten-3(href='http://materializecss.com') Materialize
 // Scripts
 script(src='https://code.jquery.com/jquery-2.1.1.min.js')
-script(src='js/materialize.js')
-script(src='js/init.js')
+script(src='public/js/materialize.js')
+script(src='public/js/init.js')
