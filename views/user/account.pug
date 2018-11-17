@@ -79,7 +79,7 @@ html(lang="en")
         document.getElementById('alamat').firstChild.textContent = userData.address;
         };
         addLoadEvent(loadUser);
-        
+
         let btnLogout = document.getElementById('logout')
         btnLogout.addEventListener("click",function(){
           window.location.replace('api/auth/logout');

@@ -4,7 +4,7 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 
 let defaultSiteValues = {
-    judul:'SEWAKAPAL',
+    judul:'⛵SEWAKAPAL',
     kategoriKapal:"#",
     registrasi:"/register",
     loginAction: "/api/auth",
