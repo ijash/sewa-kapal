@@ -52,7 +52,7 @@ function changeAuthStatus() {
   }
 }
 
-
+// supaya bisa multiple ajax.
 function addLoadEvent(func) {
   let oldonload = window.onload;
   if (typeof window.onload != 'function') {

@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 
 
 let defaultSiteValues = {
-  judul: 'SEWAKAPAL',
+  judul: 'B.E.B.E',
   kategoriKapal: '/categories',
   registrasi: "/register",
   loginAction: "/api/auth",
@@ -40,6 +40,9 @@ router.get('/about', async (req, res) => {
 
 router.get('/categories', async (req, res) => {
   const pageVariables = Object.assign(defaultSiteValues, {});
+  // masukin kode admin view
+
+
   res.render('./home/categories', pageVariables);
 
 });

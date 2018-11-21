@@ -17,8 +17,30 @@ html(lang="en")
             a#download-button.btn-large.waves-effect.waves-light.lighten-1(href=kategoriKapal class= `${colorTheme}`) mulai
       .parallax
         img.responsive-img(src='public/img/site/bg-main.jpg' alt='Background Image')
+
+
+    // nanti buat card promo2...
     .container
           .section
+            .row#row
+              .col.s3(style='min-width: 15em;')
+                .card.z-depth-2
+                  .card-image.waves-effect.waves-block.waves-light
+                    img#gambar.activator.responsive-img(src='public/img/site/item3.jpg', alt='Boat', onerror="this.onerror=null;this.src='/public/img/site/noshippic.png';", style='width:100%;height:14.8em;object-fit: cover;')
+                  .card-content
+                    span#nama.card-title.activator.text-darken-4(class='${htmlColor}-text') Kualitas yang terjamin
+                    p
+                      a.btn(class='${htmlColor}', href='#') Pesan
+                  .card-reveal
+                    span#model.card-title.text-darken-4(class='${htmlColor}-text')
+                      | -
+                      i.material-icons.right close
+                    p#tipe.text-darken-4(class='${htmlColor}-text') -
+                    p#harga.text-darken-4(class='${htmlColor}-text') -
+                    p#tanggalPembuatan.text-darken-4(class='${htmlColor}-text') -
+                    p#panjangKapal.text-darken-4(class='${htmlColor}-text') -
+                    p#panjangBeam.text-darken-4(class='${htmlColor}-text') -
+    //dibawah kasih paralax lg
 
     include ../includes/footer.pug
     include ../includes/loginmodal.pug

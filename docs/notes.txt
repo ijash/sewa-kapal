@@ -2,10 +2,13 @@ TODO LIST
 
 https://kraken.io/docs/image-resizing (image resizing API)
 
+jose:
+siapin categories>admin view.
+
 
 transaksi:
 abis pencet pesen, ke halaman detail kapal.
 masukan delivery detailsnya. dan auto cek harga di view.
 confirm, shipnya hidden, status booked. trus ke halaman konfirmasi payment, auto send API ke admin, konfirmasi di limit 24 jam(auto cancel). masuk ke pesanan di akun user kl mau revisit.
-admin ada generate payment key(tombol) kalau di klik muncul dialog konfirmasi pembayaran..
+admin ada approve payment(tombol) kalau di klik muncul dialog konfirmasi pembayaran telah dibayar..
 kl udh di bayar, di user statusnya jadi 'on rent'.
