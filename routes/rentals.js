@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   res.send(rentals);
 });
 
-router.post('/', auth, async (req, res) => {//image kapal nunggu jose
+router.post('/', auth, async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.redirect("../error/400?details=Error: "+error.details[0].message);
 
@@ -34,8 +34,8 @@ router.post('/', auth, async (req, res) => {//image kapal nunggu jose
       _id: ship._id,
       name: ship.name,
       model: ship.model,
-      price: ship.price
-      //nanti kasih image path
+      price: ship.price,
+      picture: ship.picture
     }//nanti tambahin date in-out
 
   });
