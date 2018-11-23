@@ -46,8 +46,12 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
         required: true,
         min: 0,
         max: 1000000000000
-      }
-      //tambahin object buat image path kapal
+      },
+      picture: {
+        type: String,
+        required: true,
+        maxlength: 4096
+      },
     }),
     required: true
   },
@@ -67,17 +71,33 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
     type: String,
     min: 0,
     max: 5000
-  }
+  },
+  isPaid: Boolean
 }));
 
 function validateRental(rental) {
   const schema = {
-    customerId: Joi.objectId().required(),
-    shipId: Joi.objectId().required()
+    shipId: Joi.objectId().required(),
+    name: Joi.string().min(5).max(50).required(),
+    phone: Joi.string().min(5).max(50).required(),
+    deliveryLocation: Joi.string().min(5).max(1000).required(),
+    dateReturned: Joi.date().required(),
+    notes: Joi.string().min(0).max(5000)
   };
 
   return Joi.validate(rental, schema);
 }
-
+function cleanNullValue(query) {
+  for (i in query) {
+    if (typeof query[i] === "object") {
+      for (n in query[i]) {
+        if (!query[i][n]) delete query[i][n]
+      };
+    };
+    if (!query[i]) delete query[i]
+  };
+  return query
+};
 exports.Rental = Rental; 
 exports.validate = validateRental;
+exports.cleanNullValue = cleanNullValue

@@ -6,7 +6,7 @@ const auth = require('../routes/auth')
 
 const views = require('../routes/views');
 const ships = require('../routes/ships');
-
+const rentals = require('../routes/rentals');
 
 
 module.exports = function(app) {
@@ -24,6 +24,7 @@ module.exports = function(app) {
   app.use('/api/users', users);
   app.use('/api/auth', auth);
   app.use('/api/ships', ships);
+  app.use('/api/rentals', rentals);
   app.use('', views);
   app.use((req, res, next) => {
     res.redirect('/error/404/?details=Nothing to do here...');
