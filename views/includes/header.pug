@@ -5,11 +5,11 @@
       a#logo-container.brand-logo(href='/')=judul
       ul.right.hide-on-med-and-down
         li 
-          a(href='/') Home
+          a.tooltipped(href='/' data-tooltip="Menu utama") Home
         li 
           a.tooltipped(href=kategoriKapal data-tooltip="Lihat koleksi kapal kami") Categories
         li 
-          a(href=about) About
+          a.tooltipped(href=about data-tooltip="Kenali kami lebih jauh") About
         li 
           a.waves-effect.waves-light.btn.modal-trigger#authStatus(href='#modal_login' class= `${colorTheme}` ) Login
       ul#nav-mobile.sidenav

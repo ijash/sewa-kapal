@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {//nanti kasi auth middleware
   const ship = await Ship.findById(req.body.shipId);
   if (!ship) return res.redirect("../error/400?details=Invalid ship.....");
 
-  const user = await User.findById(req.body.userId);
+  const user = await User.findById(req.body.userId);//kayaknya salah, harusnya ambil di JWT
   if (!user) return res.redirect("../error/400?details=Invalid user.....");
 
   console.log(rentalFeeResult)

@@ -1,5 +1,5 @@
-let currentYear = new Date;
 
+let currentYear = new Date;
 (function($) {
   $(function() {
 
@@ -76,3 +76,8 @@ const currencyFormat = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'IDR'
 })
+
+
+$(document).ready(function(){
+  $('.carousel').carousel();
+});

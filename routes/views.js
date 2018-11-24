@@ -11,7 +11,6 @@ let defaultSiteValues = {
   colorThemeText: 'teal',
   about: '/about',
   upPageLevel: ''
-  // userAuthStatus: req.header('x-auth-token')
 }
 
 //nanti hapus
@@ -31,7 +30,9 @@ router.get('/myaccount', auth, async (req, res) => {
 });
 
 router.get('/myaccount/rentals/:rentId', auth, async (req, res) => {
+  
   const pageVariables = Object.assign(defaultSiteValues, {myRentId:req.params.rentId, upPageLevel:'../../'});
+  if (!rentId) 
   res.render('./user/rents', pageVariables);
 });
 
@@ -48,6 +49,18 @@ router.get('/categories', async (req, res) => {
 
   res.render('./home/categories', pageVariables);
 
+});
+
+router.get('/categories/:shipId', auth, async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {shipId:req.params.shipId, upPageLevel:'../'});
+  if (!req.params.shipId) return res.redirect("../error/404?details=We can't find the boat.");
+  res.render('./user/shipdetail', pageVariables);
+});
+
+router.get('/categories/:shipId/rent', auth, async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {shipId:req.params.shipId, upPageLevel:'../../'});
+  if (!req.params.shipId) return res.redirect("../error/404?details=We can't find the boat.");
+  res.render('./user/inputrental', pageVariables);
 });
 
 router.get('/register', async (req, res) => {
@@ -89,5 +102,7 @@ router.get('/admin/ships', async (req, res) => {
   });
   res.render('./admin/ships', pageVariables);
 });
+
+
 
 module.exports = router;

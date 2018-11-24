@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+  include ../includes/head.pug
+  title Sewa Kapal
+  body
+    include ../includes/header.pug
+
+    .container
+      form(action=inputKapal, method="post")
+            
+        label(for='name')
+          b Nama
+        input(type='text' placeholder='Penerima / Customer' name='name' required)
+          
+        label(for='phone')
+          b Telpon
+        input(type='text' placeholder='HP/Telp Penerima rental' name='model' required)
+        
+        label(for='deliveryLocation')
+          b Alamat  
+        label(for='dateOut')
+          b Tanggal Pengembalian
+        input.datepicker(type='text' placeholder='Tentukan lamanya penyewaan' name='yearOfManufactured' yearRange[10])
+         
+        label
+        button(type='submit' class= `${colorTheme}`).waves-light.btn.right Sewa
+        br
+        br
+        br
+
+
+
+    include ../includes/footer.pug
+    include ../includes/loginmodal.pug
+    include ../includes/script.pug   
