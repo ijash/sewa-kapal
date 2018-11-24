@@ -23,23 +23,52 @@ html(lang="en")
     .container
           .section
             .row#row
-              .col.s3(style='min-width: 15em;')
+              .col.s4(style='min-width: 15em;')
                 .card.z-depth-2
                   .card-image.waves-effect.waves-block.waves-light
                     img#gambar.activator.responsive-img(src='public/img/site/item3.jpg', alt='Boat', onerror="this.onerror=null;this.src='/public/img/site/noshippic.png';", style='width:100%;height:14.8em;object-fit: cover;')
                   .card-content
-                    span#nama.card-title.activator.text-darken-4(class='${htmlColor}-text') Kualitas yang terjamin
-                    p
-                      a.btn(class='${htmlColor}', href='#') Pesan
+                    span#nama.card-title.activator.text-darken-4(class='${htmlColor}-text') Jaminan Kualitas
                   .card-reveal
                     span#model.card-title.text-darken-4(class='${htmlColor}-text')
-                      | -
+                      | Kualitas
                       i.material-icons.right close
-                    p#tipe.text-darken-4(class='${htmlColor}-text') -
-                    p#harga.text-darken-4(class='${htmlColor}-text') -
-                    p#tanggalPembuatan.text-darken-4(class='${htmlColor}-text') -
-                    p#panjangKapal.text-darken-4(class='${htmlColor}-text') -
-                    p#panjangBeam.text-darken-4(class='${htmlColor}-text') -
+                    p#tipe.text-darken-4(class='${htmlColor}-text') Kami memperhatikan pengelolaan kualitas dengan serius. Ini berarti kami memberikan perhatian ketat untuk memastikan standar kualitas tertinggi pada lingkungan kami setiap waktu.
+
+              .col.s4(style='min-width: 15em;')
+                .card.z-depth-2
+                  .card-image.waves-effect.waves-block.waves-light
+                    img#gambar.activator.responsive-img(src='public/img/site/item1.jpg', alt='Boat', onerror="this.onerror=null;this.src='/public/img/site/noshippic.png';", style='width:100%;height:14.8em;object-fit: cover;')
+                  .card-content
+                    span#nama.card-title.activator.text-darken-4(class='${htmlColor}-text') Sesuai Kebutuhan
+                  .card-reveal
+                    span#model.card-title.text-darken-4(class='${htmlColor}-text')
+                      | Kebutuhan
+                      i.material-icons.right close
+                    p#tipe.text-darken-4(class='${htmlColor}-text') Sesuai dengan kebutuhan dan perkembangan bisnis, kami menyediakan berbagai jenis kapal hingga kebutuhan yang spesifik.
+
+              .col.s4(style='min-width: 15em;')
+                .card.z-depth-2
+                  .card-image.waves-effect.waves-block.waves-light
+                    img#gambar.activator.responsive-img(src='public/img/site/item2.jpg', alt='Boat', onerror="this.onerror=null;this.src='/public/img/site/noshippic.png';", style='width:100%;height:14.8em;object-fit: cover;')
+                  .card-content
+                    span#nama.card-title.activator.text-darken-4(class='${htmlColor}-text') Navigasi Akurat
+                  .card-reveal
+                    span#model.card-title.text-darken-4(class='${htmlColor}-text')
+                      | Navigasi
+                      i.material-icons.right close
+                    p#tipe.text-darken-4(class='${htmlColor}-text') Mengintegrasikan perangkat navigasi kokpit ke desain all-in-one, yang menjadi sangat handal. Menjamin pelayaran dengan rasa aman dan kestabilan.
+      
+      
+    .parallax-container.valign-wrapper
+      .section.no-pad-bot
+        .container
+          .row.center
+            h5.header.col.s12.light.white-text Keperluan komersil maupun pribadi, kami siap membantu anda.
+      .parallax
+        img.responsive-img(src='public/img/site/bg-main2.jpg' alt='Background Image 2')
+       
+
     //dibawah kasih paralax lg
 
     include ../includes/footer.pug
