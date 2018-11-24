@@ -5,7 +5,7 @@ html(lang="en")
   body
     include ../includes/header.pug 
 
-    h4.center Akun saya
+    h4.center Akun Saya
     br
     ul.collection.container.z-depth-4
       li.collection-item
@@ -18,9 +18,14 @@ html(lang="en")
         p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  E-Mail 
         p#email -
       li.collection-item
-        p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em") Alamat 
-        p#alamat(style="float:left;width:50%") -
+        p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  Alamat 
+        p#alamat -
+      
     br
+    h4.center Pesanan Saya
+    br
+    ul.collection.container.z-depth-4
+      include ../includes/pesanan
     br
     .center
       button.waves-effect.waves-light.btn( class= `${colorTheme}`)#logout logout

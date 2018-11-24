@@ -71,3 +71,8 @@ addLoadEvent(changeAuthStatus);
 $(document).ready(function(){
   $('.tooltipped').tooltip();
 });
+//number formatter
+const currencyFormat = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'IDR'
+})

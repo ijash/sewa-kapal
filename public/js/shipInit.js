@@ -15,7 +15,6 @@ $(document).ready(function() {
 });
 
 let shipReq = new XMLHttpRequest();
-//auth ajax
 let shipData = null
 shipReq.open('GET', '/api/ships');
 shipReq.onload = function() {

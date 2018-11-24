@@ -2,44 +2,47 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 
-
 let defaultSiteValues = {
-  judul: 'B.E.B.E',
+  judul: 'SEWAKAPAL',
   kategoriKapal: '/categories',
   registrasi: "/register",
   loginAction: "/api/auth",
   colorTheme: 'teal lighten-1',
   colorThemeText: 'teal',
-  about: '/about'
+  about: '/about',
+  upPageLevel: ''
   // userAuthStatus: req.header('x-auth-token')
 }
+
 //nanti hapus
 router.get('/template', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {});
+  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
   res.render('./home/template-materialize', pageVariables);
-
 });
 
 router.get('/', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {});
+  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
   res.render('./home/index', pageVariables);
-  
-  
 });
 
 router.get('/myaccount', auth, async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {});
+  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
   res.render('./user/account', pageVariables);
 });
 
+router.get('/myaccount/rentals/:rentId', auth, async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {myRentId:req.params.rentId, upPageLevel:'../../'});
+  res.render('./user/rents', pageVariables);
+});
+
 router.get('/about', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {});
+  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
   res.render('./home/about', pageVariables);
 
 });
 
 router.get('/categories', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {});
+  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
   // masukin kode admin view
 
 
