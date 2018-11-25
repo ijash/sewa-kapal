@@ -6,11 +6,16 @@ jose:
 siapin categories>admin view.
 debug, pas ajax suka ga keload.
 
+1. card title kalau text kepanjangan bisa sampe keluar card.
+2. check admin udah bisa, tapi masih di client side.
+3. cara buat dropdown button untuk admin https://materializecss.com/dropdown.html#!
+4. upload gambar lebih dari satu, ganti tipe data picture di ship jadi array https://materializecss.com/text-inputs.html
+5. tambahin slider di card biar bisa tampilin banyak gambar https://materializecss.com/carousel.html
+6. pake character counter biar user friendly
+
 transaksi:
 abis pencet pesen, ke halaman detail kapal.
 masukan delivery detailsnya. dan auto cek harga di view.
 confirm, shipnya hidden, status booked. trus ke halaman konfirmasi payment, auto send API ke admin, konfirmasi di limit 24 jam(auto cancel). masuk ke pesanan di akun user kl mau revisit.
 admin ada approve payment(tombol) kalau di klik muncul dialog konfirmasi pembayaran telah dibayar..
 kl udh di bayar, di user statusnya jadi 'on rent'.
-
-error page ganti ke static files local
