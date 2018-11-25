@@ -145,3 +145,15 @@ html(lang="en")
   script(src='/public/js/jquery-3.3.1.min.js')
   script(src='/public/js/materialize.js')
   script(type='text/javascript' src='/public/js/init.js')
+  script.
+    let currentYear = new Date;
+    $(document).ready(function() {
+      $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        maxDate: new Date(Date.now()),
+        setDefaultDate: true,
+        defaultDate: new Date(Date.now()),
+        yearRange: [1970, currentYear.getFullYear()]
+      });
+    });
+  

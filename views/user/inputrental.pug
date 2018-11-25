@@ -5,7 +5,8 @@ html(lang="en")
   body
     include ../includes/header.pug
 
-    .container
+    .container.z-depth-3(style="padding: 1em 5em;")
+      h4.center Form Penyewaan
       form(action=inputKapal, method="post")
             
         label(for='name')
@@ -14,22 +15,68 @@ html(lang="en")
           
         label(for='phone')
           b Telpon
-        input(type='text' placeholder='HP/Telp Penerima rental' name='model' required)
+        input(type='text' placeholder='HP/Telp Penerima Rental' name='phone' required)
         
         label(for='deliveryLocation')
           b Alamat  
+        input(type='text' placeholder='Lokasi Dermaga Pengantaran Rental' name='deliveryLocation' required) 
         label(for='dateOut')
           b Tanggal Pengembalian
-        input.datepicker(type='text' placeholder='Tentukan lamanya penyewaan' name='yearOfManufactured' yearRange[10])
-         
+        input.datepicker#tglKembali(type='text' placeholder='Tentukan lamanya penyewaan' name='dateOut' yearRange[3] onchange='rentalFeeCalc()')
         label
+          b Estimasi Harga Sewa
+        h5#priceLabel -
+
         button(type='submit' class= `${colorTheme}`).waves-light.btn.right Sewa
-        br
-        br
-        br
+       
+      br
+      div
+      br
+      a(href=upPageLevel+'../categories/'+shipId class= `${colorTheme}`).waves-light.btn.right kembali
+      br
+        
+      br
 
 
 
     include ../includes/footer.pug
     include ../includes/loginmodal.pug
     include ../includes/script.pug   
+    script.
+      let shipId = "#{shipId}"
+      let shipReq = new XMLHttpRequest();
+      let shipData = null
+      shipReq.open('GET', '/api/ships/'+shipId);
+      shipReq.onload = function() {
+        shipData = JSON.parse(shipReq.responseText);
+      }
+      shipReq.send();
+
+      let dateString = null
+      let inpDate
+      $(document).ready(function() {
+      $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        maxDate: new Date(today.year + 3,today.month,today.date+2),
+        minDate: new Date(today.year,today.month,today.date +2),
+        setDefaultDate: true,
+        defaultDate: new Date(Date.now()),
+        yearRange: [today.year, today.year+3]
+        });
+        
+        
+      });
+        
+      function rentalFeeCalc(){
+          dateString = document.getElementById('tglKembali').value
+          inpDate= new Date(dateString.match(/^(\d)+/)[0],(parseInt(dateString.match(/(?<=-)(\d)+(?=-)/)[0]) -1),dateString.match(/(?<=-)(\d+)$/)[0]);
+          let diffDays = Math.round(Math.abs((inpDate.getTime() - today.getTime()) / (86400000/*one day in ms*/)));
+          
+          document.getElementById('priceLabel').innerHTML = formatter.format(diffDays * shipData.price)
+        };
+      const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'IDR'
+      })
+
+    

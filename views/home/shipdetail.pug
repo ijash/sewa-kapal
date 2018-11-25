@@ -27,14 +27,14 @@ html(lang="en")
   title Sewa Kapal
   body
     include ../includes/header.pug
- 
+
     form(action="/ships/", method="post")
     .container.z-depth-2
       .pemisahLine
         h4.center#judulPage Detail Kapal
       img.centerImg.z-depth-1.responsive-img#gambar(src="", alt="") 
       .pemisahLine.center
-        a.pulse.waves-effect.waves-light.btn.modal-trigger#authStatus(href='/categories/'+shipId+'/rent' class= `${colorTheme}` ) Pesan Sekarang!
+        a.pulse.waves-effect.waves-light.btn.modal-trigger#authStatus(href=authLink class= `${colorTheme}` ) Pesan Sekarang!
       table.striped
         tr  
           td.textHead
@@ -152,7 +152,7 @@ html(lang="en")
 
       function populateTable(){
         addContent('judulPage',shipData.name);
-        addContent('available',shipData.available);
+        document.getElementById('available').firstChild.textContent = (()=>{if (shipData.available) return 'Tersedia';else return 'Tidak Tersedia'})();
         addContent('_id',shipData._id);
         addContent('name',shipData.name);
         addContent('model',shipData.model);

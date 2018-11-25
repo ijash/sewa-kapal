@@ -1,5 +1,9 @@
 
-let currentYear = new Date;
+today = new Date() ;
+today.year = today.getFullYear();
+today.month = today.getMonth();
+today.date = today.getDate();
+
 (function($) {
   $(function() {
 
@@ -17,16 +21,6 @@ $(document).ready(function() {
 });
 
 
-
-$(document).ready(function() {
-  $('.datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    maxDate: new Date(Date.now()),
-    setDefaultDate: true,
-    defaultDate: new Date(Date.now()),
-    yearRange: [1970, currentYear.getFullYear()]
-  });
-});
 
 let httpReq = new XMLHttpRequest();
 //auth ajax

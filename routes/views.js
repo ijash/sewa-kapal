@@ -51,10 +51,15 @@ router.get('/categories', async (req, res) => {
 
 });
 
-router.get('/categories/:shipId', auth, async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {shipId:req.params.shipId, upPageLevel:'../'});
+router.get('/categories/:shipId', async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {shipId:req.params.shipId, upPageLevel:'../', authLink:''});
   if (!req.params.shipId) return res.redirect("../error/404?details=We can't find the boat.");
-  res.render('./user/shipdetail', pageVariables);
+  if (!req.cookies.x_auth_token) {pageVariables.authLink='#modal_login';}
+  else {
+    pageVariables.authLink = '/categories/'+pageVariables.shipId+'/rent';
+  }
+  
+  res.render('./home/shipdetail', pageVariables);
 });
 
 router.get('/categories/:shipId/rent', auth, async (req, res) => {
