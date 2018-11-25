@@ -61,7 +61,7 @@ function addLoadEvent(func) {
   }
 }
 addLoadEvent(changeAuthStatus);
-
+// tooltip
 $(document).ready(function(){
   $('.tooltipped').tooltip();
 });

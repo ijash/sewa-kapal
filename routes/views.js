@@ -32,7 +32,7 @@ router.get('/myaccount', auth, async (req, res) => {
 router.get('/myaccount/rentals/:rentId', auth, async (req, res) => {
   
   const pageVariables = Object.assign(defaultSiteValues, {myRentId:req.params.rentId, upPageLevel:'../../'});
-  if (!rentId) 
+  if (!req.params.rentId) return res.redirect("../error/404?details=There's no such recipt..");
   res.render('./user/rents', pageVariables);
 });
 

@@ -22,7 +22,7 @@ html(lang="en")
         input(type='text' placeholder='Lokasi Dermaga Pengantaran Rental' name='deliveryLocation' required) 
         label(for='dateOut')
           b Tanggal Pengembalian
-        input.datepicker#tglKembali(type='text' placeholder='Tentukan lamanya penyewaan' name='dateOut' yearRange[3] onchange='rentalFeeCalc()')
+        input.datepicker#tglKembali(type='text' placeholder='Tentukan lamanya penyewaan' name='dateOut' yearRange[3] )
         label
           b Estimasi Harga Sewa
         h5#priceLabel -
@@ -49,24 +49,26 @@ html(lang="en")
       shipReq.open('GET', '/api/ships/'+shipId);
       shipReq.onload = function() {
         shipData = JSON.parse(shipReq.responseText);
+        rentalFeeCalc()
       }
       shipReq.send();
 
-      let dateString = null
-      let inpDate
-      $(document).ready(function() {
-      $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd',
-        maxDate: new Date(today.year + 3,today.month,today.date+2),
-        minDate: new Date(today.year,today.month,today.date +2),
-        setDefaultDate: true,
-        defaultDate: new Date(Date.now()),
-        yearRange: [today.year, today.year+3]
-        });
-        
-        
+      let dateString = null;
+      let inpDate =null;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.datepicker');
+        var instances = M.Datepicker.init(elems, {
+          format: 'yyyy-mm-dd',
+          maxDate: new Date(today.year + 3,today.month,today.date+2),
+          minDate: new Date(today.year,today.month,today.date +2),
+          setDefaultDate: true,
+          defaultDate: new Date(Date.now()),
+          yearRange: [today.year, today.year+3]
+          });
+          document.getElementById('tglKembali').addEventListener("change", rentalFeeCalc);
       });
-        
+      
       function rentalFeeCalc(){
           dateString = document.getElementById('tglKembali').value
           inpDate= new Date(dateString.match(/^(\d)+/)[0],(parseInt(dateString.match(/(?<=-)(\d)+(?=-)/)[0]) -1),dateString.match(/(?<=-)(\d+)$/)[0]);

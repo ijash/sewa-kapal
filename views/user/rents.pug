@@ -75,12 +75,11 @@ html(lang="en")
 
         
         document.getElementById('alamat').firstChild.textContent = rentData.customer.deliveryLocation;
-        document.getElementById('biaya').firstChild.textContent = "Rp. "+currencyFormat.format(rentData.rentalFee);
+        document.getElementById('biaya').firstChild.textContent = currencyFormat.format(rentData.rentalFee);
         document.getElementById('kapal').firstChild.textContent = rentData.ship.name;
         document.getElementById('phone').firstChild.textContent = rentData.customer.phone;
         document.getElementById('pengembalian').firstChild.textContent = rentData.dateReturned.slice(0,-14);
         countDownDate = new Date(rentData.dateOut).getTime() + 86400000;
-        console.log("itung:",new Date(countDownDate))
         };
       addLoadEvent(loadRent)
 
