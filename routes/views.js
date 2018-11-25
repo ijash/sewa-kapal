@@ -6,6 +6,7 @@ let defaultSiteValues = {
   judul: 'SEWAKAPAL',
   kategoriKapal: '/categories',
   registrasi: "/register",
+  edit: "/admin/ships",
   loginAction: "/api/auth",
   colorTheme: 'teal lighten-1',
   colorThemeText: 'teal',
