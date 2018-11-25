@@ -16,55 +16,56 @@ let defaultSiteValues = {
 
 //nanti hapus
 router.get('/template', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
+  const pageVariables = Object.assign(defaultSiteValues, { /*add specific variables here*/ });
   res.render('./home/template-materialize', pageVariables);
 });
 
 router.get('/', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
+  const pageVariables = Object.assign(defaultSiteValues, { /*add specific variables here*/ });
   res.render('./home/index', pageVariables);
 });
 
 router.get('/myaccount', auth, async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
+  const pageVariables = Object.assign(defaultSiteValues, { /*add specific variables here*/ });
   res.render('./user/account', pageVariables);
 });
 
 router.get('/myaccount/rentals/:rentId', auth, async (req, res) => {
-  
-  const pageVariables = Object.assign(defaultSiteValues, {myRentId:req.params.rentId, upPageLevel:'../../'});
-  if (!rentId) 
-  res.render('./user/rents', pageVariables);
+
+  const pageVariables = Object.assign(defaultSiteValues, { myRentId: req.params.rentId, upPageLevel: '../../' });
+  if (!rentId)
+    res.render('./user/rents', pageVariables);
 });
 
 router.get('/about', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
+  const pageVariables = Object.assign(defaultSiteValues, { /*add specific variables here*/ });
   res.render('./home/about', pageVariables);
 
 });
 
 router.get('/categories', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {/*add specific variables here*/});
+  const pageVariables = Object.assign(defaultSiteValues, { /*add specific variables here*/ });
   // masukin kode admin view
 
 
   res.render('./home/categories', pageVariables);
+  // res.render('./home/testCard', pageVariables);
+
 
 });
 
 router.get('/categories/:shipId', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {shipId:req.params.shipId, upPageLevel:'../', authLink:''});
+  const pageVariables = Object.assign(defaultSiteValues, { shipId: req.params.shipId, upPageLevel: '../', authLink: '' });
   if (!req.params.shipId) return res.redirect("../error/404?details=We can't find the boat.");
-  if (!req.cookies.x_auth_token) {pageVariables.authLink='#modal_login';}
-  else {
-    pageVariables.authLink = '/categories/'+pageVariables.shipId+'/rent';
+  if (!req.cookies.x_auth_token) { pageVariables.authLink = '#modal_login'; } else {
+    pageVariables.authLink = '/categories/' + pageVariables.shipId + '/rent';
   }
-  
+
   res.render('./home/shipdetail', pageVariables);
 });
 
 router.get('/categories/:shipId/rent', auth, async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {shipId:req.params.shipId, upPageLevel:'../../'});
+  const pageVariables = Object.assign(defaultSiteValues, { shipId: req.params.shipId, upPageLevel: '../../' });
   if (!req.params.shipId) return res.redirect("../error/404?details=We can't find the boat.");
   res.render('./user/inputrental', pageVariables);
 });

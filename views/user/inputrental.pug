@@ -28,10 +28,8 @@ html(lang="en")
         h5#priceLabel -
 
         button(type='submit' class= `${colorTheme}`).waves-light.btn.right Sewa
-       
-      br
+  
       div
-      br
       a(href=upPageLevel+'../categories/'+shipId class= `${colorTheme}`).waves-light.btn.right kembali
       br
         
@@ -49,24 +47,26 @@ html(lang="en")
       shipReq.open('GET', '/api/ships/'+shipId);
       shipReq.onload = function() {
         shipData = JSON.parse(shipReq.responseText);
+        rentalFeeCalc()
       }
       shipReq.send();
 
       let dateString = null
       let inpDate
-      $(document).ready(function() {
-      $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd',
-        maxDate: new Date(today.year + 3,today.month,today.date+2),
-        minDate: new Date(today.year,today.month,today.date +2),
-        setDefaultDate: true,
-        defaultDate: new Date(Date.now()),
-        yearRange: [today.year, today.year+3]
-        });
-        
-        
-      });
-        
+
+      document.addEventListener('DOMContentLoaded', function() {
+       var elems = document.querySelectorAll('.datepicker');
+       var instances = M.Datepicker.init(elems, {
+         format: 'yyyy-mm-dd',
+         maxDate: new Date(today.year + 3,today.month,today.date+2),
+         minDate: new Date(today.year,today.month,today.date +2),
+         setDefaultDate: true,
+         defaultDate: new Date(Date.now()),
+         yearRange: [today.year, today.year+3]
+         });
+         
+       });  
+      
       function rentalFeeCalc(){
           dateString = document.getElementById('tglKembali').value
           inpDate= new Date(dateString.match(/^(\d)+/)[0],(parseInt(dateString.match(/(?<=-)(\d)+(?=-)/)[0]) -1),dateString.match(/(?<=-)(\d+)$/)[0]);

@@ -1,26 +1,42 @@
-
-today = new Date() ;
+today = new Date();
 today.year = today.getFullYear();
 today.month = today.getMonth();
 today.date = today.getDate();
 
-(function($) {
-  $(function() {
-
-    $('.sidenav').sidenav();
-    $('.parallax').parallax();
-
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
-$(document).ready(function() {
-  $('.modal').modal();
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.parallax');
+  var instances = M.Parallax.init(elems);
 });
 
-$(document).ready(function() {
-  $('select').formSelect();
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+
+// tooltip
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.tooltipped');
+  var instances = M.Tooltip.init(elems, {
+    outDuration: 250,
+    enterDelay: 500
+  });
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.dropdown-trigger');
+  var instances = M.Dropdown.init(elems);
+});
 
 let httpReq = new XMLHttpRequest();
 //auth ajax
@@ -62,9 +78,6 @@ function addLoadEvent(func) {
 }
 addLoadEvent(changeAuthStatus);
 
-$(document).ready(function(){
-  $('.tooltipped').tooltip();
-});
 //number formatter
 const currencyFormat = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -72,6 +85,7 @@ const currencyFormat = new Intl.NumberFormat('en-US', {
 })
 
 
-$(document).ready(function(){
-  $('.carousel').carousel();
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.carousel');
+  var instances = M.Carousel.init(elems);
 });
