@@ -7,11 +7,11 @@ html(lang="en")
 
     .container.z-depth-3(style="padding: 1em 5em;")
       h4.center Form Penyewaan
-      form(action=inputKapal, method="post")
+      form(action=upPageLevel+'api/rentals/', method="post")
             
         label(for='name')
           b Nama
-        input(type='text' placeholder='Penerima / Customer' name='name' required)
+        input(type='text' placeholder='Penerima / Customer' name='custName' required)
           
         label(for='phone')
           b Telpon
@@ -22,11 +22,12 @@ html(lang="en")
         input(type='text' placeholder='Lokasi Dermaga Pengantaran Rental' name='deliveryLocation' required) 
         label(for='dateOut')
           b Tanggal Pengembalian
-        input.datepicker#tglKembali(type='text' placeholder='Tentukan lamanya penyewaan' name='dateOut' yearRange[3] )
+        input.datepicker#tglKembali(type='text' placeholder='Tentukan lamanya penyewaan' name='dateReturned' yearRange[3] )
         label
           b Estimasi Harga Sewa
         h5#priceLabel -
-
+        input#shipValueId(type="hidden" value="-" name="shipId")
+        input#userDataId(type="hidden" value="-" name="userId")
         button(type='submit' class= `${colorTheme}`).waves-light.btn.right Sewa
   
       div
@@ -48,6 +49,8 @@ html(lang="en")
       shipReq.onload = function() {
         shipData = JSON.parse(shipReq.responseText);
         rentalFeeCalc()
+        document.getElementById('shipValueId').value = shipData._id;
+        document.getElementById('userDataId').value = userData._id;
       }
       shipReq.send();
 
@@ -65,6 +68,8 @@ html(lang="en")
           yearRange: [today.year, today.year+3]
           });
           document.getElementById('tglKembali').addEventListener("change", rentalFeeCalc);
+          
+
       });
       
       function rentalFeeCalc(){

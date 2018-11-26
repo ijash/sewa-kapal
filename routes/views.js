@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 
 let defaultSiteValues = {
-  judul: 'SEWAKAPAL',
+  judul: 'SAILINER',
   kategoriKapal: '/categories',
   registrasi: "/register",
   edit: "/admin/ships",
@@ -54,7 +54,7 @@ router.get('/categories', async (req, res) => {
 
 });
 
-router.get('/categories/:shipId', async (req, res) => {
+router.get('/categories/:shipId', async (req, res) => {// nanti kalau sedang di sewa, tombol pesan sekarangnya kehapus
   const pageVariables = Object.assign(defaultSiteValues, { shipId: req.params.shipId, upPageLevel: '../', authLink: '' });
   if (!req.params.shipId) return res.redirect("../error/404?details=We can't find the boat.");
   if (!req.cookies.x_auth_token) { pageVariables.authLink = '#modal_login'; } else {
@@ -99,7 +99,8 @@ router.get('/error/:code', async (req, res) => {
     statusDefinition: statusCodeList[currentStatus],
     errorDetails: req.query.details
   });
-
+  console.log(req.url);
+  
   res.status(req.params.code).render('./home/error', pageVariables);
 });
 

@@ -14,7 +14,6 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
       required: true,
       minlength: 5,
       maxlength: 255,
-      unique:true
     },
   },
   customer: { 
@@ -36,7 +35,6 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
         required: true,
         minlength: 10,
         maxlength: 15,
-        unique:true
       }      
     }),  
     required: true
@@ -93,7 +91,8 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
 function validateRental(rental) {
   const schema = {
     shipId: Joi.objectId().required(),
-    name: Joi.string().min(5).max(50).required(),
+    userId: Joi.objectId().required(),
+    custName: Joi.string().min(5).max(50).required(),
     phone: Joi.string().min(5).max(50).required(),
     deliveryLocation: Joi.string().min(5).max(1000).required(),
     dateReturned: Joi.date().required(),

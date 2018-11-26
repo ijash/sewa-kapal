@@ -52,13 +52,14 @@ httpReq.send();
 function changeAuthStatus() {
   if (!userData) {
 
-  } else {
+  } 
+  else {
     authStatus = document.getElementById('authStatus');
-    authStatus.href = '/myaccount'
+    authStatus.href = '/myaccount';
     authStatus.innerText = userData.name
     authStatusMobile = document.getElementById('authStatusMobile');
-    authStatusMobile.href = '/myaccount'
-    authStatusMobile.innerText = userData.name
+    authStatusMobile.href = '/myaccount';
+    authStatusMobile.innerText = userData.name;
   }
 }
 

@@ -19,7 +19,8 @@ html(lang="en")
         p#alamat -      
       li.collection-item
         p(style="font-weight: bold;float:left;width: 15%;min-width: 48px; margin-right: 1em")  Kapal 
-        p#kapal -
+        p
+          a(href="#")#kapal -
       li.collection-item
         p(style="font-weight: bold;float:left;width: 15%;min-width: 48px; margin-right: 1em")  Tenggal Kembali 
         p#pengembalian -
@@ -73,10 +74,11 @@ html(lang="en")
 
       function loadRent(){
 
-        
+        document.getElementById('customer').firstChild.textContent = rentData.customer.name;
         document.getElementById('alamat').firstChild.textContent = rentData.customer.deliveryLocation;
         document.getElementById('biaya').firstChild.textContent = currencyFormat.format(rentData.rentalFee);
         document.getElementById('kapal').firstChild.textContent = rentData.ship.name;
+        document.getElementById("kapal").href = "../../categories/"+rentData.ship._id;
         document.getElementById('phone').firstChild.textContent = rentData.customer.phone;
         document.getElementById('pengembalian').firstChild.textContent = rentData.dateReturned.slice(0,-14);
         countDownDate = new Date(rentData.dateOut).getTime() + 86400000;
