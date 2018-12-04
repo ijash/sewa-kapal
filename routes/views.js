@@ -99,7 +99,6 @@ router.get('/error/:code', async (req, res) => {
     statusDefinition: statusCodeList[currentStatus],
     errorDetails: req.query.details
   });
-  console.log(req.url);
   
   res.status(req.params.code).render('./home/error', pageVariables);
 });

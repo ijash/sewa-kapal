@@ -2,6 +2,7 @@ const auth = require('../middleware/auth'); //authorization
 const bcrypt = require('bcrypt')
 const _ = require('lodash');
 const { User, validate } = require('../models/user');
+const { Rental } = require('../models/rental');
 const express = require('express');
 const router = express.Router();
 
@@ -25,6 +26,14 @@ router.post('/', async (req, res) => {
   const token = user.generateAuthToken();
   res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email'])); //ganti ke pug
 });
+//buat ngambil daftar rental user
+router.get('/rents', auth, async (req, res) => {
+  const user = await User.findById(req.user).select('-password');
+  const rents = await Rental.find({'user.email': user.email});
+  
+  res.send(rents);
+})
+
 
 
 module.exports = router;

@@ -95,9 +95,10 @@ const numberFormat = new Intl.NumberFormat('id-ID', {
   useGrouping: true
 });
 
-function numFormat(value){
-  if (!value) return 'Unavailable';
-  else return numberFormat.format(value);
+function numFormat(value, optionalSuffix){
+  optionalSuffix = optionalSuffix || ''
+  if (!value) return '(unavailable)';
+  else return numberFormat.format(value)+optionalSuffix;
 }
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.carousel');

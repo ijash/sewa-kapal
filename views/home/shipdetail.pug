@@ -159,17 +159,17 @@ html(lang="en")
         addContent('type','Kapal ukuran '+shipData.type);
         addContent('price',currFormat(shipData.price));
         addContent('yearOfManufactured',shipData.details.yearOfManufactured);
-        addContent('lengthOverall',numFormat(shipData.details.lengthOverall)+' m');
-        addContent('beam',numFormat(shipData.details.beam)+' m');
-        addContent('draft',numFormat(shipData.details.draft)+' m');
-        addContent('displacement',numFormat(shipData.details.displacement)+' kg');
+        addContent('lengthOverall',numFormat(shipData.details.lengthOverall,' m' ));
+        addContent('beam',numFormat(shipData.details.beam,' m' ));
+        addContent('draft',numFormat(shipData.details.draft,' m' ));
+        addContent('displacement',numFormat(shipData.details.displacement,' kg' ));
         addContent('engine',shipData.details.engine);
         addContent('fuel',shipData.details.fuel);
-        addContent('fuelCapacity',numFormat(shipData.details.fuelCapacity)+' ℓ');
-        addContent('maximumSpeed',numFormat(shipData.details.maximumSpeed)+' km/j');
-        addContent('cruisingSpeed',numFormat(shipData.details.cruisingSpeed)+' km/j');
-        addContent('numberOfCabins',numFormat(shipData.details.numberOfCabins)+' kabin');
-        addContent('numberOfBerths',numFormat(shipData.details.numberOfBerths)+' orang');
+        addContent('fuelCapacity',numFormat(shipData.details.fuelCapacity,' ℓ' ));
+        addContent('maximumSpeed',numFormat(shipData.details.maximumSpeed,' km/j' ));
+        addContent('cruisingSpeed',numFormat(shipData.details.cruisingSpeed,' km/j' ));
+        addContent('numberOfCabins',numFormat(shipData.details.numberOfCabins,' kabin' ));
+        addContent('numberOfBerths',numFormat(shipData.details.numberOfBerths,' orang' ));
         
         document.getElementById('gambar').src = '../'+shipData.picture
       };
