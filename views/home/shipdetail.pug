@@ -45,7 +45,7 @@ html(lang="en")
           td.textHead
             p ID
           td
-            p.textValue#_id -
+            p.textValue#_id(style="font-family: monospace") -
         tr  
           td.textHead
             p Nama
@@ -88,7 +88,7 @@ html(lang="en")
             p.textValue#draft -
         tr  
           td.textHead
-            p Berat(Kg)
+            p Berat
           td
             p.textValue#displacement -
         tr  
@@ -103,7 +103,7 @@ html(lang="en")
             p.textValue#fuel -
         tr  
           td.textHead
-            p Kapasitas Bahan Bakar (Liter)
+            p Kapasitas Bahan Bakar
           td
             p.textValue#fuelCapacity -
         tr  
@@ -156,20 +156,20 @@ html(lang="en")
         addContent('_id',shipData._id);
         addContent('name',shipData.name);
         addContent('model',shipData.model);
-        addContent('type',shipData.type);
-        addContent('price',shipData.price);
+        addContent('type','Kapal ukuran '+shipData.type);
+        addContent('price',currFormat(shipData.price));
         addContent('yearOfManufactured',shipData.details.yearOfManufactured);
-        addContent('lengthOverall',shipData.details.lengthOverall);
-        addContent('beam',shipData.details.beam);
-        addContent('draft',shipData.details.draft);
-        addContent('displacement',shipData.details.displacement);
+        addContent('lengthOverall',numFormat(shipData.details.lengthOverall)+' m');
+        addContent('beam',numFormat(shipData.details.beam)+' m');
+        addContent('draft',numFormat(shipData.details.draft)+' m');
+        addContent('displacement',numFormat(shipData.details.displacement)+' kg');
         addContent('engine',shipData.details.engine);
         addContent('fuel',shipData.details.fuel);
-        addContent('fuelCapacity',shipData.details.fuelCapacity);
-        addContent('maximumSpeed',shipData.details.maximumSpeed);
-        addContent('cruisingSpeed',shipData.details.cruisingSpeed);
-        addContent('numberOfCabins',shipData.details.numberOfCabins);
-        addContent('numberOfBerths',shipData.details.numberOfBerths);
+        addContent('fuelCapacity',numFormat(shipData.details.fuelCapacity)+' ℓ');
+        addContent('maximumSpeed',numFormat(shipData.details.maximumSpeed)+' km/j');
+        addContent('cruisingSpeed',numFormat(shipData.details.cruisingSpeed)+' km/j');
+        addContent('numberOfCabins',numFormat(shipData.details.numberOfCabins)+' kabin');
+        addContent('numberOfBerths',numFormat(shipData.details.numberOfBerths)+' orang');
         
         document.getElementById('gambar').src = '../'+shipData.picture
       };

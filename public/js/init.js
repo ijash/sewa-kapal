@@ -44,9 +44,11 @@ let userData = null
 httpReq.open('GET', '/api/users/me');
 httpReq.onload = function() {
   userData = JSON.parse(httpReq.responseText);
-
+  
 }
 httpReq.send();
+//kasih rental data
+
 
 
 function changeAuthStatus() {
@@ -79,12 +81,24 @@ function addLoadEvent(func) {
 }
 addLoadEvent(changeAuthStatus);
 //number formatter
-const currencyFormat = new Intl.NumberFormat('en-US', {
+const currencyFormat = new Intl.NumberFormat('id-ID', {
   style: 'currency',
-  currency: 'IDR'
-})
+  currency: 'IDR',
+  currencyDisplay : 'symbol'
+});
+function currFormat(value){
+  if (!value) return 'Unavailable';
+  else return currencyFormat.format(value);
+}
+const numberFormat = new Intl.NumberFormat('id-ID', {
+  style: 'decimal',
+  useGrouping: true
+});
 
-
+function numFormat(value){
+  if (!value) return 'Unavailable';
+  else return numberFormat.format(value);
+}
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.carousel');
   var instances = M.Carousel.init(elems);

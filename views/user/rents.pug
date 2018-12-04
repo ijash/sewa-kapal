@@ -76,7 +76,7 @@ html(lang="en")
 
         document.getElementById('customer').firstChild.textContent = rentData.customer.name;
         document.getElementById('alamat').firstChild.textContent = rentData.customer.deliveryLocation;
-        document.getElementById('biaya').firstChild.textContent = currencyFormat.format(rentData.rentalFee);
+        document.getElementById('biaya').firstChild.textContent = currFormat(rentData.rentalFee);
         document.getElementById('kapal').firstChild.textContent = rentData.ship.name;
         document.getElementById("kapal").href = "../../categories/"+rentData.ship._id;
         document.getElementById('phone').firstChild.textContent = rentData.customer.phone;

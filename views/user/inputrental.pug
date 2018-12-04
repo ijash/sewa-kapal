@@ -77,11 +77,8 @@ html(lang="en")
           inpDate= new Date(dateString.match(/^(\d)+/)[0],(parseInt(dateString.match(/(?<=-)(\d)+(?=-)/)[0]) -1),dateString.match(/(?<=-)(\d+)$/)[0]);
           let diffDays = Math.round(Math.abs((inpDate.getTime() - today.getTime()) / (86400000/*one day in ms*/)));
           
-          document.getElementById('priceLabel').innerHTML = formatter.format(diffDays * shipData.price)
+          document.getElementById('priceLabel').innerHTML = currFormat(diffDays * shipData.price)
         };
-      const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'IDR'
-      })
+  
 
     
