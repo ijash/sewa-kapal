@@ -33,7 +33,7 @@ html(lang="en")
       .pemisahLine
         h4.center#judulPage Detail Kapal
       img.centerImg.z-depth-1.responsive-img#gambar(src="", alt="") 
-      .pemisahLine.center
+      .pemisahLine.center#pesanButton
         a.pulse.waves-effect.waves-light.btn.modal-trigger#authStatus(href=authLink class= `${colorTheme}` ) Pesan Sekarang!
       table.striped
         tr  
@@ -131,7 +131,7 @@ html(lang="en")
       .pemisahLine.center   
 
       .pemisahLine.center
-        a.waves-effect.waves-light.btn.modal-trigger(href='/categories' class= `${colorTheme}` ) Kembali
+        a.waves-effect.waves-light.btn.modal-trigger(href="javascript:history.back()" class= `${colorTheme}` ) Kembali
 
       .pemisahLine
   
@@ -151,8 +151,12 @@ html(lang="en")
       }
 
       function populateTable(){
+
         addContent('judulPage',shipData.name);
-        document.getElementById('available').firstChild.textContent = (()=>{if (shipData.available) return 'Tersedia';else return 'Tidak Tersedia'})();
+        document.getElementById('available').firstChild.textContent = (()=>{if (shipData.available) return 'Tersedia';else {
+          document.getElementById('pesanButton').firstChild.remove();
+          return 'Tidak Tersedia'
+        }})();
         addContent('_id',shipData._id);
         addContent('name',shipData.name);
         addContent('model',shipData.model);

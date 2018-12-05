@@ -21,11 +21,8 @@ html(lang="en")
         p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  Alamat 
         p#alamat -
       
-    br
-    h4.center Pesanan Saya
-    br
-    ul.collection.container.z-depth-4
-      include ../includes/pesanan
+
+    div#pesanan
     br
     .center
       button.waves-effect.waves-light.btn( class= `${colorTheme}`)#logout logout
@@ -33,19 +30,11 @@ html(lang="en")
     include ../includes/footer.pug
     include ../includes/loginmodal.pug
     include ../includes/script.pug   
-    script.
-      function loadUser(){
-        document.getElementById('nama').firstChild.textContent = userData.name;
-        document.getElementById('telpon').firstChild.textContent = userData.phone;
-        document.getElementById('email').firstChild.textContent = userData.email;
-        document.getElementById('alamat').firstChild.textContent = userData.address;
-        };
-        addLoadEvent(loadUser);
+    script(src=upPageLevel+'public/js/user_page.js')
 
-        let btnLogout = document.getElementById('logout')
-        btnLogout.addEventListener("click",function(){
-          window.location.replace('api/auth/logout');
-          });
+      
+
+
 
         
 

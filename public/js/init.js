@@ -47,8 +47,6 @@ httpReq.onload = function() {
   
 }
 httpReq.send();
-//kasih rental data
-
 
 
 function changeAuthStatus() {
@@ -65,7 +63,7 @@ function changeAuthStatus() {
   }
 }
 
-// supaya bisa multiple ajax.
+// supaya bisa multiple window.onload
 function addLoadEvent(func) {
   let oldonload = window.onload;
   if (typeof window.onload != 'function') {

@@ -28,8 +28,8 @@ router.post('/', async (req, res) => {
 });
 //buat ngambil daftar rental user
 router.get('/rents', auth, async (req, res) => {
-  const user = await User.findById(req.user).select('-password');
-  const rents = await Rental.find({'user.email': user.email});
+  const user = await User.findById(req.user).select('-password -__v');
+  const rents = await Rental.find({'user.email': user.email}).select(' -__v');
   
   res.send(rents);
 })
