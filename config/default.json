@@ -1,4 +1,5 @@
 {
   "jwtPrivateKey": "sk_jwtkey",
+  "dbRemote":"mongodb://192.168.0.4/sewakapal",
   "db":"mongodb://localhost/sewakapal"
 }
