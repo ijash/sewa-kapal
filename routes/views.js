@@ -113,6 +113,14 @@ router.get('/admin/ships', async (req, res) => {
   res.render('./admin/ships', pageVariables);
 });
 
+router.get('/admin/rents', async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {
+    rentals: "/api/rents",
+    upPageLevel: '../'
+  });
+  res.render('./admin/rentals', pageVariables);
+});
+
 
 
 module.exports = router;

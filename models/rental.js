@@ -85,7 +85,11 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
     min: 0,
     max: 5000
   },
-  isPaid: Boolean
+  isPaid: Boolean,
+  isActive: {
+    type: Boolean,
+    default: true
+  }
 }));
 
 function validateRental(rental) {

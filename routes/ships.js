@@ -1,4 +1,5 @@
 const express = require('express');
+const rentCheck = require('../middleware/rentCheck');
 const _ = require('lodash');
 const multer = require("multer");
 const { cleanNullValue, Ship, validate } = require('../models/ship');
@@ -15,7 +16,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }); // use limit: {fileSize: to define max fileSize}
 
-router.get('/', async (req, res) => {
+router.get('/', rentCheck, async (req, res) => {
   const ship = await Ship.find().sort('name');
   res.send(ship); // kasih view atau ganti ke pug
 });
@@ -104,7 +105,7 @@ router.delete('/:id', async (req, res) => { // tambahin auth untuk admin
   res.send(ship); // view untuk konfirmasi berhasil
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', rentCheck, async (req, res) => {
   const ship = await Ship.findById(req.params.id);
   if (!ship) return res.status(404).send('Id not found.');
 

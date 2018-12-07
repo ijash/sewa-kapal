@@ -1,0 +1,80 @@
+doctype html
+html(lang="en")
+  include ../includes/head.pug
+  title Admin Rental - #{judul}
+  body
+    .container
+      table.highlight.striped
+        thead
+          tr
+            th Rental
+            th Pembayaran
+            th Status
+            th Tgl Kembali
+            th Hapus
+        tbody#rental-body
+    script.
+      let upLevel = "#{upPageLevel}";
+
+      function addLoadEvent(func) {
+        let oldonload = window.onload;
+        if (typeof window.onload != 'function') {
+          window.onload = func;
+        } else {
+          window.onload = function() {
+            if (oldonload) {
+              oldonload();
+            }
+            func();
+          }
+        }
+      }    
+      rentData = null;
+      let rentReq = new XMLHttpRequest();
+      let userRentData = null;
+      rentReq.open('GET', '/api/rentals/');
+      rentReq.onload = function () {
+        rentData = JSON.parse(rentReq.responseText);
+      }
+      rentReq.send();
+      addLoadEvent(() =>{
+        
+        let rental = document.getElementById('rental-body');
+        for (let i in rentData) {
+          let btnConfirm = null
+          if (rentData[i].isPaid === false && rentData[i].isActive === true){
+            btnConfirm =  '<button class="btn" id="btnConfirm">konfirmasi</button>';
+          }
+          else
+            btnConfirm = '<p class="">Selesai...</p>';
+
+          dataRow = `
+            <tr>
+              <td> 
+                <a href="${upLevel}myaccount/rentals/${rentData[i]._id}">
+                  <p>${rentData[i].user.email}</p>
+                </a>
+              </td>
+              <td>
+                  ${btnConfirm}
+              </td>
+              <td>
+                ${(rentData[i].isActive?"Aktif":"Diarsip")}
+              </td>
+              <td>
+                ${rentData[i].dateReturned.slice(0,-14)}
+              </td>
+              <td>
+                <button class="btn red darken-4" id="btnDel">
+                  <i class="material-icons")>delete</i>
+                </button>
+                
+              </td>
+            </tr>
+            `;
+            rental.insertAdjacentHTML('beforeend', dataRow)
+        }
+      })
+
+      
+      

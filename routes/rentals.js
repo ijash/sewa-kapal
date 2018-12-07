@@ -1,7 +1,5 @@
-// Atur 24H cancellation logic
-
-
 const auth = require('../middleware/auth');
+const rentCheck = require('../middleware/rentCheck');
 const { Rental, validate,} = require('../models/rental');
 const { Ship } = require('../models/ship');
 const { User } = require('../models/user');
@@ -12,12 +10,26 @@ const router = express.Router();
 
 Fawn.init(mongoose);
 
-router.get('/', auth, async (req, res) => {//tambahin is admin nanti
+router.get('/', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
   const rentals = await Rental.find().sort('-dateOut');
   res.send(rentals);
 });
 
-router.get('/:rentId', auth, async (req, res) => {//tambahin is admin nanti
+router.get('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
+  const rental = await Rental.findById(req.params.rentId).sort('-dateOut');
+  if (!rental) return res.status(404).send('The rental with the given ID was not found.');
+  res.send(rental);
+});
+
+router.delete('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
+  //UNFINISHED
+  const rental = await Rental.findById(req.params.rentId).sort('-dateOut');
+  if (!rental) return res.status(404).send('The rental with the given ID was not found.');
+  res.send(rental);
+});
+
+router.put('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
+  //UNFINISHED
   const rental = await Rental.findById(req.params.rentId).sort('-dateOut');
   if (!rental) return res.status(404).send('The rental with the given ID was not found.');
   res.send(rental);
@@ -25,7 +37,7 @@ router.get('/:rentId', auth, async (req, res) => {//tambahin is admin nanti
 
 router.post('/', async (req, res) => {//nanti kasi auth middleware
   let rentDate = new Date(Date.now())
-  let retDate = new Date(req.body.dateReturned)
+  let returnDate = new Date(req.body.dateReturned)
   
   const { error } = validate(req.body);
   if (error) return res.redirect("../error/400?details=Error: " + error.details[0].message);
@@ -37,7 +49,7 @@ router.post('/', async (req, res) => {//nanti kasi auth middleware
   if (!user) return res.redirect("../error/400?details=Invalid user.....");
 
   rentalFeeResult = (() => {
-    let diffDays = Math.round(Math.abs((rentDate.getTime() - retDate.getTime()) / (86400000/*one day in ms*/)));
+    let diffDays = Math.round(Math.abs((rentDate.getTime() - returnDate.getTime()) / 86400000/*one day in ms*/));
     return diffDays * ship.price
   })();
   
@@ -60,7 +72,7 @@ router.post('/', async (req, res) => {//nanti kasi auth middleware
       picture: ship.picture
     },
     dateOut: rentDate,
-    dateReturned: retDate,
+    dateReturned: returnDate,
     rentalFee: rentalFeeResult,
     isPaid: false
 

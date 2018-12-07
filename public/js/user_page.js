@@ -28,15 +28,19 @@ addLoadEvent(() => {
     for (let i in userRentData) {
       let paymentStatus = () => {
         if (userRentData[i].isPaid) {
-          return 'Sudah Bayar';
+          return 'Sudah bayar';
         } else {
-          return 'Belum Bayar'
+          return 'Belum bayar'
         }
+      }
+      let activeRental = ()=>{
+        if (userRentData[i].isActive) return 'new"data-badge-caption="- Aktif" ';
+        else return '"data-badge-caption="- sudah lewat"'
       }
       itemPesanan = `
         <a href="/myaccount/rentals/${userRentData[i]._id}" class="collection-item">
           <li>
-            <span class="badge">
+            <span class="badge ${activeRental()}>
               ${paymentStatus()}
             </span>
             <span style="font-weight: bold;">
