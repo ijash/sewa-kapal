@@ -1,5 +1,4 @@
 const express = require('express');
-// const shipData = require('../public/js/shipInit')
 const router = express.Router();
 const auth = require('../middleware/auth');
 
@@ -45,9 +44,7 @@ router.get('/about', async (req, res) => {
 });
 
 router.get('/categories', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {
-    shipData: req.body.name
-  });
+  const pageVariables = Object.assign(defaultSiteValues, {});
   // masukin kode admin view
 
 
