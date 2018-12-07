@@ -44,7 +44,6 @@ let userData = null
 httpReq.open('GET', '/api/users/me');
 httpReq.onload = function() {
   userData = JSON.parse(httpReq.responseText);
-  
 }
 httpReq.send();
 

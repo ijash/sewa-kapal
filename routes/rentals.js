@@ -2,7 +2,7 @@
 
 
 const auth = require('../middleware/auth');
-const { Rental, validate, cleanNullValue } = require('../models/rental');
+const { Rental, validate,} = require('../models/rental');
 const { Ship } = require('../models/ship');
 const { User } = require('../models/user');
 const mongoose = require('mongoose');
@@ -18,7 +18,8 @@ router.get('/', auth, async (req, res) => {//tambahin is admin nanti
 });
 
 router.get('/:rentId', auth, async (req, res) => {//tambahin is admin nanti
-  const rental = await Rental.find().sort('-dateOut');
+  const rental = await Rental.findById(req.params.rentId).sort('-dateOut');
+  if (!rental) return res.status(404).send('The rental with the given ID was not found.');
   res.send(rental);
 });
 

@@ -41,12 +41,13 @@ html(lang="en")
     script.
       let rentData = null;
       function getRent(rentId){
-        let httpReq = new XMLHttpRequest();
-        httpReq.open('GET', '/api/rentals/'+rentId);
-        httpReq.onload = function() {
-          rentData = JSON.parse(httpReq.responseText)[0];
+        let rentHttpReq = new XMLHttpRequest();
+        rentHttpReq.open('GET', '/api/rentals/'+rentId);
+        rentHttpReq.onload = function() {
+          rentData = JSON.parse(rentHttpReq.responseText);
+          console.log(rentHttpReq.responseText)
       }
-      httpReq.send();
+      rentHttpReq.send();
       }
      console.log('rental ID: #{myRentId}')
      getRent(`#{myRentId}`);
@@ -73,8 +74,6 @@ html(lang="en")
           document.getElementById("bayar").firstChild.textContent = "Waktu bayar habis";
         }
       }, 1000);
-
-
 
       function loadRent(){
 
