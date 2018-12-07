@@ -1,19 +1,3 @@
-(function($) {
-  $(function() {
-
-    $('.sidenav').sidenav();
-    $('.parallax').parallax();
-
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
-$(document).ready(function() {
-  $('.modal').modal();
-});
-
-$(document).ready(function() {
-  $('select').formSelect();
-});
-
 let shipReq = new XMLHttpRequest();
 let shipData = null
 shipReq.open('GET', '/api/ships');
@@ -34,4 +18,4 @@ function addLoadEvent(func) {
       func();
     }
   }
-}
+};

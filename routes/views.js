@@ -1,4 +1,5 @@
 const express = require('express');
+// const shipData = require('../public/js/shipInit')
 const router = express.Router();
 const auth = require('../middleware/auth');
 
@@ -31,8 +32,8 @@ router.get('/myaccount', auth, async (req, res) => {
 });
 
 router.get('/myaccount/rentals/:rentId', auth, async (req, res) => {
-  
-  const pageVariables = Object.assign(defaultSiteValues, {myRentId:req.params.rentId, upPageLevel:'../../'});
+
+  const pageVariables = Object.assign(defaultSiteValues, { myRentId: req.params.rentId, upPageLevel: '../../' });
   if (!req.params.rentId) return res.redirect("../error/404?details=There's no such recipt..");
   res.render('./user/rents', pageVariables);
 });
@@ -44,17 +45,18 @@ router.get('/about', async (req, res) => {
 });
 
 router.get('/categories', async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, { /*add specific variables here*/ });
+  const pageVariables = Object.assign(defaultSiteValues, {
+    shipData: req.body.name
+  });
   // masukin kode admin view
 
 
   res.render('./home/categories', pageVariables);
-  // res.render('./home/testCard', pageVariables);
 
 
 });
 
-router.get('/categories/:shipId', async (req, res) => {// nanti kalau sedang di sewa, tombol pesan sekarangnya kehapus
+router.get('/categories/:shipId', async (req, res) => { // nanti kalau sedang di sewa, tombol pesan sekarangnya kehapus
   const pageVariables = Object.assign(defaultSiteValues, { shipId: req.params.shipId, upPageLevel: '../', authLink: '' });
   if (!req.params.shipId) return res.redirect("../error/404?details=We can't find the boat.");
   if (!req.cookies.x_auth_token) { pageVariables.authLink = '#modal_login'; } else {
@@ -99,7 +101,8 @@ router.get('/error/:code', async (req, res) => {
     statusDefinition: statusCodeList[currentStatus],
     errorDetails: req.query.details
   });
-  
+  console.log(req.url);
+
   res.status(req.params.code).render('./home/error', pageVariables);
 });
 
