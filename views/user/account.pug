@@ -4,29 +4,29 @@ html(lang="en")
   title Sewa Kapal
   body
     include ../includes/header.pug 
+    main
+      h4.center Akun Saya
+      br
+      ul.collection.container.z-depth-4
+        li.collection-item
+          p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  Nama 
+          p#nama -
+        li.collection-item
+          p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  Telepon 
+          p#telpon -
+        li.collection-item
+          p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  E-Mail 
+          p#email -
+        li.collection-item
+          p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  Alamat 
+          p#alamat -
+        
 
-    h4.center Akun Saya
-    br
-    ul.collection.container.z-depth-4
-      li.collection-item
-        p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  Nama 
-        p#nama -
-      li.collection-item
-        p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  Telepon 
-        p#telpon -
-      li.collection-item
-        p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  E-Mail 
-        p#email -
-      li.collection-item
-        p(style="float:left;width: 10%;min-width: 50px; margin-right: 1em")  Alamat 
-        p#alamat -
-      
-
-    div#pesanan
-    br
-    .center
-      button.waves-effect.waves-light.btn( class= `${colorTheme}`)#logout logout
-    br
+      div#pesanan
+      br
+      .center
+        button.waves-effect.waves-light.btn( class= `${colorTheme}`)#logout logout
+      br
     include ../includes/footer.pug
     include ../includes/loginmodal.pug
     include ../includes/script.pug   

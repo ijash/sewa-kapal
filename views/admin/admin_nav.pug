@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  include ../includes/head.pug
+  title Admin Rental - #{judul}
+  body
+    main
+      .container
+        h2.center  Admin Menu
+        table
+          thead
+            tr
+              th Link
+              th Deskripsi
+          tbody
+            tr 
+              td
+                a(href=upPageLevel+"admin/ships" style="width: 150px; margin-right: 40px ").btn Input Kapal 
+              td  Input kapal baru sebagai koleksi kapal sailiner.
+            tr 
+              td
+                a(href=upPageLevel+"admin/rents" style="width: 150px; margin-right: 40px ").btn Rental 
+              td  Pengaturan rental. konfirmasi dan penghapusan transaksi keseluruhan rental.     
+        br
+        .center
+          a(href="myaccount") Kembali ke Akun
+
+  script.
+    let upLevel = "#{upPageLevel}";

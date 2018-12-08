@@ -27,114 +27,113 @@ html(lang="en")
   title Sewa Kapal
   body
     include ../includes/header.pug
+    main
+      .container.z-depth-2
+        .pemisahLine
+          h4.center#judulPage Detail Kapal
+        img.centerImg.z-depth-1.responsive-img#gambar(src="", alt="") 
+        .pemisahLine.center#pesanButton
+          a.pulse.waves-effect.waves-light.btn.modal-trigger#authStatus(href=authLink class= `${colorTheme}` ) Pesan Sekarang!
+        table.striped
+          tr  
+            td.textHead
+              p Status
+            td
+              p.textValue#available -
+          tr  
+            td.textHead
+              p ID
+            td
+              p.textValue#_id(style="font-family: monospace") -
+          tr  
+            td.textHead
+              p Nama
+            td
+              p.textValue#name -
+          tr  
+            td.textHead
+              p Model
+            td
+              p.textValue#model -
+          tr  
+            td.textHead
+              p Tipe
+            td
+              p.textValue#type -
+          tr  
+            td.textHead
+              p Harga/Hari
+            td
+              p.textValue#price -
+          tr  
+            td.textHead
+              p Tanggal Pembuatan
+            td
+              p.textValue#yearOfManufactured -
+          tr  
+            td.textHead
+              p Panjang Keseluruhan
+            td
+              p.textValue#lengthOverall -
+          tr  
+            td.textHead
+              p Panjang Beam
+            td
+              p.textValue#beam -
+          tr  
+            td.textHead
+              p Panjang Draft
+            td
+              p.textValue#draft -
+          tr  
+            td.textHead
+              p Berat
+            td
+              p.textValue#displacement -
+          tr  
+            td.textHead
+              p Mesin
+            td
+              p.textValue#engine -
+          tr  
+            td.textHead
+              p Bahan Bakar
+            td
+              p.textValue#fuel -
+          tr  
+            td.textHead
+              p Kapasitas Bahan Bakar
+            td
+              p.textValue#fuelCapacity -
+          tr  
+            td.textHead
+              p Kecepatan Max
+            td
+              p.textValue#maximumSpeed -
+          tr  
+            td.textHead
+              p Kecepatan Berlayar
+            td
+              p.textValue#cruisingSpeed -
+          tr  
+            td.textHead
+              p Kabin
+            td
+              p.textValue#numberOfCabins -
+          tr  
+            td.textHead
+              p Kapasitas Penumpang
+            td
+              p.textValue#numberOfBerths -
 
-    form(action="/ships/", method="post")
-    .container.z-depth-2
-      .pemisahLine
-        h4.center#judulPage Detail Kapal
-      img.centerImg.z-depth-1.responsive-img#gambar(src="", alt="") 
-      .pemisahLine.center#pesanButton
-        a.pulse.waves-effect.waves-light.btn.modal-trigger#authStatus(href=authLink class= `${colorTheme}` ) Pesan Sekarang!
-      table.striped
-        tr  
-          td.textHead
-            p Status
-          td
-            p.textValue#available -
-        tr  
-          td.textHead
-            p ID
-          td
-            p.textValue#_id(style="font-family: monospace") -
-        tr  
-          td.textHead
-            p Nama
-          td
-            p.textValue#name -
-        tr  
-          td.textHead
-            p Model
-          td
-            p.textValue#model -
-        tr  
-          td.textHead
-            p Tipe
-          td
-            p.textValue#type -
-        tr  
-          td.textHead
-            p Harga/Hari
-          td
-            p.textValue#price -
-        tr  
-          td.textHead
-            p Tanggal Pembuatan
-          td
-            p.textValue#yearOfManufactured -
-        tr  
-          td.textHead
-            p Panjang Keseluruhan
-          td
-            p.textValue#lengthOverall -
-        tr  
-          td.textHead
-            p Panjang Beam
-          td
-            p.textValue#beam -
-        tr  
-          td.textHead
-            p Panjang Draft
-          td
-            p.textValue#draft -
-        tr  
-          td.textHead
-            p Berat
-          td
-            p.textValue#displacement -
-        tr  
-          td.textHead
-            p Mesin
-          td
-            p.textValue#engine -
-        tr  
-          td.textHead
-            p Bahan Bakar
-          td
-            p.textValue#fuel -
-        tr  
-          td.textHead
-            p Kapasitas Bahan Bakar
-          td
-            p.textValue#fuelCapacity -
-        tr  
-          td.textHead
-            p Kecepatan Max
-          td
-            p.textValue#maximumSpeed -
-        tr  
-          td.textHead
-            p Kecepatan Berlayar
-          td
-            p.textValue#cruisingSpeed -
-        tr  
-          td.textHead
-            p Kabin
-          td
-            p.textValue#numberOfCabins -
-        tr  
-          td.textHead
-            p Kapasitas Penumpang
-          td
-            p.textValue#numberOfBerths -
+          
+        .pemisahLine.center   
 
-        
-      .pemisahLine.center   
+        .pemisahLine.center
+          a.waves-effect.waves-light.btn.modal-trigger(href="javascript:history.back()" class= `${colorTheme}` ) Kembali
 
-      .pemisahLine.center
-        a.waves-effect.waves-light.btn.modal-trigger(href="javascript:history.back()" class= `${colorTheme}` ) Kembali
-
-      .pemisahLine
-  
+        .pemisahLine
+    
     include ../includes/footer.pug
     include ../includes/loginmodal.pug
     include ../includes/script.pug

@@ -4,37 +4,37 @@ html(lang="en")
   title Sewa Kapal
   body
     include ../includes/header.pug
-
-    .container.z-depth-3(style="padding: 1em 5em;")
-      h4.center Form Penyewaan
-      form(action=upPageLevel+'api/rentals/', method="post")
+    main
+      br
+      .container.z-depth-3(style="padding: 1em 5em;")
+        h4.center Form Penyewaan
+        form(action=upPageLevel+'api/rentals/', method="post")   
+          label(for='name')
+            b Nama
+          input(type='text' placeholder='Penerima / Customer' name='custName' required)
             
-        label(for='name')
-          b Nama
-        input(type='text' placeholder='Penerima / Customer' name='custName' required)
+          label(for='phone')
+            b Telpon
+          input(type='text' placeholder='HP/Telp Penerima Rental' name='phone' required)
           
-        label(for='phone')
-          b Telpon
-        input(type='text' placeholder='HP/Telp Penerima Rental' name='phone' required)
-        
-        label(for='deliveryLocation')
-          b Alamat  
-        input(type='text' placeholder='Lokasi Dermaga Pengantaran Rental' name='deliveryLocation' required) 
-        label(for='dateOut')
-          b Tanggal Pengembalian
-        input.datepicker#tglKembali(type='text' placeholder='Tentukan lamanya penyewaan' name='dateReturned' yearRange[3] )
-        label
-          b Estimasi Harga Sewa
-        h5#priceLabel -
-        input#shipValueId(type="hidden" value="-" name="shipId")
-        input#userDataId(type="hidden" value="-" name="userId")
-        button(type='submit' class= `${colorTheme}`).waves-light.btn.right Sewa
-  
-      div
-      a(href=upPageLevel+'../categories/'+shipId class= `${colorTheme}`).waves-light.btn.right kembali
-      br
-        
-      br
+          label(for='deliveryLocation')
+            b Alamat  
+          input(type='text' placeholder='Lokasi Dermaga Pengantaran Rental' name='deliveryLocation' required) 
+          label(for='dateOut')
+            b Tanggal Pengembalian
+          input.datepicker#tglKembali(type='text' placeholder='Tentukan lamanya penyewaan' name='dateReturned' yearRange[3] )
+          label
+            b Estimasi Harga Sewa
+          h5#priceLabel -
+          input#shipValueId(type="hidden" value="-" name="shipId")
+          input#userDataId(type="hidden" value="-" name="userId")
+          button(type='submit' class= `${colorTheme}`).waves-light.btn.right Sewa
+    
+        div
+        a(href=upPageLevel+'../categories/'+shipId class= `${colorTheme}`).waves-light.btn.right kembali
+        br
+          
+        br
 
 
 

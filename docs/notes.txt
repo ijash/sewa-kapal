@@ -19,3 +19,15 @@ masukan delivery detailsnya. dan auto cek harga di view.
 confirm, shipnya hidden, status booked. trus ke halaman konfirmasi payment, auto send API ke admin, konfirmasi di limit 24 jam(auto cancel). masuk ke pesanan di akun user kl mau revisit.
 admin ada approve payment(tombol) kalau di klik muncul dialog konfirmasi pembayaran telah dibayar..
 kl udh di bayar, di user statusnya jadi 'on rent'.
+
+
+
+pake fetch:
+contoh fetch get:
+fetch('../../api/ships/')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });

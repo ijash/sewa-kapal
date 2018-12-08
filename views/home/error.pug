@@ -9,13 +9,14 @@ html(lang="en")
     link(rel="stylesheet", href="/public/css/materialize.css")
 
 body.blue-grey.darken-4
- div(class='container center' style='width= 20em;')
-    br
-    img(class="z-depth-3" style='border-radius: 50%;width: 16em;height: 16em;object-fit: cover;' class="responsive-img" width="400px" src='https://images.unsplash.com/photo-1523294002435-91467ed2ccda?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=775aa50c236173c9f7c04aadf953c05a&auto=format&fit=crop&w=300&q=40')
-    h4.center.text-lighten-2(class= `${colorThemeText}`+"-text" )=`${status} : ${statusDefinition}`
-    p.center(class= `${colorThemeText}`+"-text" ).text-lighten-2=errorDetails
-    a.brown-text(href="/") back to main page
+ main
+  div(class='container center' style='width= 20em;')
+      br
+      img(class="z-depth-3" style='border-radius: 50%;width: 16em;height: 16em;object-fit: cover;' class="responsive-img" width="400px" src='../../public/img/site/wreck.jpeg')
+      h4.center.text-lighten-2(class= `${colorThemeText}`+"-text" )=`${status} : ${statusDefinition}`
+      p.center(class= `${colorThemeText}`+"-text" ).text-lighten-2=errorDetails
+      a.brown-text(href="/") back to main page
 
-    script(src='/public/js/jquery-3.3.1.min.js')
-    script(src='/public/js/materialize.js')
-    script(src='/public/js/init.js')
+  script(src='/public/js/jquery-3.3.1.min.js')
+  script(src='/public/js/materialize.js')
+  script(src='/public/js/init.js')

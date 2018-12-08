@@ -30,12 +30,14 @@ router.delete('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is ad
 
 router.put('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
   //UNFINISHED
-  const rental = await Rental.findById(req.params.rentId).sort('-dateOut');
+  let rental = await Rental.findById(req.params.rentId);
   if (!rental) return res.status(404).send('The rental with the given ID was not found.');
+  Object.assign(rental,req.body)
+  await rental.save();
   res.send(rental);
 });
 
-router.post('/', async (req, res) => {//nanti kasi auth middleware
+router.post('/', auth, async (req, res) => {
   let rentDate = new Date(Date.now())
   let returnDate = new Date(req.body.dateReturned)
   
@@ -77,7 +79,7 @@ router.post('/', async (req, res) => {//nanti kasi auth middleware
     isPaid: false
 
   });
-  // Atur 24H cancellation logic... & masih error duplikat
+  // masih error duplikat
   try {
     new Fawn.Task()
       .save('rentals', rental)
