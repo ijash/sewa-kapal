@@ -18,7 +18,17 @@ const upload = multer({ storage: storage }); // use limit: {fileSize: to define 
 
 router.get('/', rentCheck, async (req, res) => {
   const ship = await Ship.find().sort('name');
-  res.send(ship); // kasih view atau ganti ke pug
+  res.send(ship);
+});
+
+router.get('/devel', rentCheck, async (req, res) => {
+  const currShip = 'speed 2'
+  const ship = await Ship.find({_id:'5bf06100334dcd4529882990', available: false}).select('name available -_id');
+  if(ship.length>0){
+    
+  }
+  console.log()
+  res.send(ship); 
 });
 
 router.post('/', upload.single("picture"), async (req, res) => { // tambahin auth untuk admin

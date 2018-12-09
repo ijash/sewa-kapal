@@ -14,15 +14,16 @@ html(lang="en")
           tbody
             tr 
               td
-                a(href=upPageLevel+"admin/ships" style="width: 150px; margin-right: 40px ").btn Input Kapal 
-              td  Input kapal baru sebagai koleksi kapal sailiner.
+                a(href=upPageLevel+"admin/ships" style="width: 150px; margin-right: 40px ").btn.btn-small.waves-light.waves-effect Input Kapal 
+              td  Input kapal baru sebagai koleksi kapal #{judul}.
             tr 
               td
-                a(href=upPageLevel+"admin/rents" style="width: 150px; margin-right: 40px ").btn Rental 
-              td  Pengaturan rental. konfirmasi dan penghapusan transaksi keseluruhan rental.     
+                a(href=upPageLevel+"admin/rents" style="width: 150px; margin-right: 40px ").btn.btn-small.waves-light.waves-effect Rental 
+              td  Pengaturan rental. konfirmasi, penutupan dan penghapusan transaksi dari keseluruhan rental.     
         br
         .center
           a(href="myaccount") Kembali ke Akun
-
+  include ../includes/script.pug
+  
   script.
     let upLevel = "#{upPageLevel}";

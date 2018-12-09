@@ -22,19 +22,17 @@ router.get('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin
 });
 
 router.delete('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
-  //UNFINISHED
-  const rental = await Rental.findById(req.params.rentId).sort('-dateOut');
+  const rental = await Rental.findByIdAndRemove(req.params.rentId);
   if (!rental) return res.status(404).send('The rental with the given ID was not found.');
   res.send(rental);
 });
 
 router.put('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
-  //UNFINISHED
   let rental = await Rental.findById(req.params.rentId);
   if (!rental) return res.status(404).send('The rental with the given ID was not found.');
   Object.assign(rental,req.body)
-  await rental.save();
-  res.send(rental);
+  const result = await rental.save();
+  res.send(result);
 });
 
 router.post('/', auth, async (req, res) => {
@@ -46,7 +44,10 @@ router.post('/', auth, async (req, res) => {
   
   const ship = await Ship.findById(req.body.shipId);
   if (!ship) return res.redirect("../error/400?details=Invalid ship.....");
-
+  
+  const rentedShip = await Ship.find({_id:req.body.shipId, available: false}).select('name available _id');
+  if (rentedShip.length>0) res.status(503).send('Ship must be available or not being used.');
+  
   const user = await User.findById(req.body.userId);//kayaknya salah, harusnya ambil di JWT
   if (!user) return res.redirect("../error/400?details=Invalid user.....");
 
@@ -79,7 +80,8 @@ router.post('/', auth, async (req, res) => {
     isPaid: false
 
   });
-  // masih error duplikat
+  // masih error duplikat kalau sewa kapal yg sama. ini harus delete collection dulu baru solved. nani bisa muncul lg
+  // console.log(ship, typeof ship.name)
   try {
     new Fawn.Task()
       .save('rentals', rental)
@@ -87,12 +89,12 @@ router.post('/', auth, async (req, res) => {
         $set: { available: false }
       })
       .run();
-    
     // res.status(201).send(rental);
     res.redirect('../../../myaccount/rentals/'+rental.id)
   }
   catch (ex) {
     res.status(500).send('something failed..');
+    
   }
 
 });

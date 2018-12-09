@@ -13,6 +13,7 @@ const Ship = mongoose.model('Ships', new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    trim: true, 
     minlength: 3,
     maxlength: 25
   },
@@ -106,7 +107,7 @@ const Ship = mongoose.model('Ships', new mongoose.Schema({
 
 function validateShip(ship) {
   const schema = {
-    picture: Joi.string(),
+    picture: Joi.string().max(4096),
     name: Joi.string().min(3).max(25).required(),
     model: Joi.string().min(3).max(50).required(),
     type: Joi.string().valid('besar', 'sedang', 'kecil').required(),
