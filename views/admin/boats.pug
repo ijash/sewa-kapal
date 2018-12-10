@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  include ../includes/head.pug
+  title Admin Kapal - #{judul}
+  body
+    include ../includes/header.pug
+    main
+      .container
+        h2.center Admin Kapal 
+        table.highlight.striped
+          thead
+            tr
+              th Kapal
+              th Status
+              th Hapus
+          tbody#kapal-body
+        br
+        .center
+          a(href="/admin") Kembali ke Menu
+          div(style="margin-top: 50px;")
+script(src="../../public/js/pages/admin/boats.js")
+        
+        

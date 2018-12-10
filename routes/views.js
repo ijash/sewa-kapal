@@ -108,14 +108,21 @@ router.get('/error/:code', async (req, res) => {
   res.status(req.params.code).render('./home/error', pageVariables);
 });
 
-router.get('/admin/ships', async (req, res) => {
+router.get('/admin/addboat', auth, async (req, res) => {
   const pageVariables = Object.assign(defaultSiteValues, {
     inputKapal: "/api/ships"
   });
-  res.render('./admin/ships', pageVariables);
+  res.render('./admin/addboat', pageVariables);
 });
 
-router.get('/admin/rents', async (req, res) => {
+router.get('/admin/boats', auth, async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, {
+    boatApi: "/api/ships"
+  });
+  res.render('./admin/boats', pageVariables);
+});
+
+router.get('/admin/rents', auth, async (req, res) => {
   const pageVariables = Object.assign(defaultSiteValues, {
     rentals: "/api/rents",
     upPageLevel: '../'

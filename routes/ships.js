@@ -21,15 +21,6 @@ router.get('/', rentCheck, async (req, res) => {
   res.send(ship);
 });
 
-router.get('/devel', rentCheck, async (req, res) => {
-  const currShip = 'speed 2'
-  const ship = await Ship.find({_id:'5bf06100334dcd4529882990', available: false}).select('name available -_id');
-  if(ship.length>0){
-    
-  }
-  console.log()
-  res.send(ship); 
-});
 
 router.post('/', upload.single("picture"), async (req, res) => { // tambahin auth untuk admin
   const { error } = validate(req.body)
@@ -69,44 +60,14 @@ router.post('/', upload.single("picture"), async (req, res) => { // tambahin aut
 
 });
 
-router.put('/:id', upload.single("picture"), async (req, res) => { // tambahin auth untuk admin
-  const { error } = validate(req.body)
-  if (error) return res.status(400).send(error.details[0].message);
-
-  let query = {
-    picture: req.file.path,
-    name: req.body.name,
-    model: req.body.model,
-    type: req.body.type,
-    price: req.body.price,
-    available: req.body.available,
-    details: {
-      yearOfManufactured: req.body.yearOfManufactured,
-      lengthOverall: req.body.lengthOverall,
-      beam: req.body.beam,
-      draft: req.body.draft,
-      displacement: req.body.displacement,
-      engine: req.body.engine,
-      fuel: req.body.fuel,
-      fuelCapacity: req.body.fuelCapacity,
-      maximumSpeed: req.body.maximumSpeed,
-      cruisingSpeed: req.body.cruisingSpeed,
-      numberOfCabins: req.body.numberOfCabins,
-      numberOfBerths: req.body.numberOfBerths
-    }
-  }
-  cleanNullValue(query);
-
-  try {
-    const ship = await Ship.findOneAndUpdate(req.params.id, query, { new: true, runValidators: true, context: 'query' });
-
-    if (!ship) return res.status(404).send('Id not found.');
-
-    res.send(ship); // view untuk konfirmasi berhasil
-  } catch (err) {
-    res.send(err.message)
-  }
+router.put('/:boatId', async (req, res) => {//tambahin is admin nanti
+  let boat = await Ship.findById(req.params.boatId);
+  if (!boat) return res.status(404).send('The boat with the given ID was not found.');
+  Object.assign(boat,req.body)
+  const result = await boat.save();
+  res.send(result);
 });
+
 
 router.delete('/:id', async (req, res) => { // tambahin auth untuk admin
   const ship = await Ship.findByIdAndDelete(req.params.id);

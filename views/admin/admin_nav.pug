@@ -3,26 +3,32 @@ html(lang="en")
   include ../includes/head.pug
   title Admin Rental - #{judul}
   body
+    include ../includes/header.pug
     main
       .container
         h2.center  Admin Menu
         table
           thead
             tr
-              th Link
+              th Pilihan menu
               th Deskripsi
           tbody
             tr 
               td
-                a(href=upPageLevel+"admin/ships" style="width: 150px; margin-right: 40px ").btn.btn-small.waves-light.waves-effect Input Kapal 
+                a(href=upPageLevel+"admin/addboat" style="width: 150px; margin-right: 40px ").btn.btn-small.waves-light.waves-effect Input Kapal 
               td  Input kapal baru sebagai koleksi kapal #{judul}.
             tr 
               td
                 a(href=upPageLevel+"admin/rents" style="width: 150px; margin-right: 40px ").btn.btn-small.waves-light.waves-effect Rental 
-              td  Pengaturan rental. konfirmasi, penutupan dan penghapusan transaksi dari keseluruhan rental.     
+              td  Pengaturan rental. konfirmasi, penutupan dan penghapusan transaksi dari keseluruhan rental.
+            tr 
+              td
+                a(href=upPageLevel+"admin/boats" style="width: 150px; margin-right: 40px ").btn.btn-small.waves-light.waves-effect Kapal 
+              td  Pengaturan kapal. Lihat keseluruhan daftar kapal beserta pengaturannya.            
         br
         .center
           a(href="myaccount") Kembali ke Akun
+          div(style="margin-top: 50px;")
   include ../includes/script.pug
   
   script.
