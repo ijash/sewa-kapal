@@ -1,33 +1,32 @@
 //Rental data Ajax
-let userRentalRequest = new XMLHttpRequest();
-let userRentData = null;
-userRentalRequest.open('GET', '/api/users/rents');
-userRentalRequest.onload = function () {
-  userRentData = JSON.parse(userRentalRequest.responseText);
-  //sort to recent
+async function userRentalRequest() {
+  const myInit = {
+    method: 'GET',
+    cache: 'default'
+  }
+  const response = await fetch('/api/users/rents');
+  userRentData = await response.json();
   userRentData.sort(function(a, b) {
     a = new Date(a.dateOut);
     b = new Date(b.dateOut);
-    return a>b ? -1 : a<b ? 1 : 0;
+    return a > b ? -1 : a < b ? 1 : 0;
   });
-  
 }
-userRentalRequest.send();
 
 //write user data to field
-addLoadEvent(() => {
+function loadUserRent() {
   document.getElementById('nama').firstChild.textContent = userData.name;
   document.getElementById('telpon').firstChild.textContent = userData.phone;
   document.getElementById('email').firstChild.textContent = userData.email;
   document.getElementById('alamat').firstChild.textContent = userData.address;
-  if (userData.isAdmin){
+  if (userData.isAdmin) {
     let adminLink = document.getElementById('nama')
-    adminLink.insertAdjacentHTML('beforeend',`<a href="/admin" class="btn btn-small waves-effect waves-light btn" style="float:right">Admin Menu</a>`)
+    adminLink.insertAdjacentHTML('beforeend', `<a href="/admin" class="btn btn-small waves-effect waves-light btn" style="float:right">Admin Menu</a>`)
   }
-});
+}
 
 // write user's rent data
-addLoadEvent(() => {
+function userRentDetail() {
   if ((userRentData.length == 0)) console.log('no data');
   else {
 
@@ -52,10 +51,16 @@ addLoadEvent(() => {
       pesanan.insertAdjacentHTML('beforeend', itemPesanan)
     };
   };
-});
+}
 
 // logout function
 let btnLogout = document.getElementById('logout')
-btnLogout.addEventListener("click",function(){
+btnLogout.addEventListener("click", function() {
   window.location.replace('api/auth/logout');
-  });
+});
+
+document.addEventListener('DOMContentLoaded', async function() {
+  await userRentalRequest();
+  await loadUserRent();
+  await userRentDetail();
+});

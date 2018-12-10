@@ -1,6 +1,8 @@
 doctype html
 html(lang="en")
   include ../includes/head.pug
+  include ../includes/loginmodal.pug
+  include ../includes/script.pug
   title Sewa Kapal
   body
     include ../includes/header.pug 
@@ -35,9 +37,7 @@ html(lang="en")
       .center
         a.waves-effect.waves-light.btn(href="../" class= `${colorTheme}`) Akun saya
       br
-    include ../includes/footer.pug
-    include ../includes/loginmodal.pug
-    include ../includes/script.pug   
+    include ../includes/footer.pug   
     script.
       let rentData = null;
       function getRent(rentId){

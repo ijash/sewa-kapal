@@ -1,6 +1,8 @@
 doctype html
 html(lang="en")
   include ../includes/head.pug
+  include ../includes/loginmodal.pug
+  include ../includes/script.pug 
   title Sewa Kapal
   body
     include ../includes/header.pug
@@ -38,9 +40,7 @@ html(lang="en")
 
 
 
-    include ../includes/footer.pug
-    include ../includes/loginmodal.pug
-    include ../includes/script.pug   
+    include ../includes/footer.pug  
     script.
       let shipId = "#{shipId}"
       let shipReq = new XMLHttpRequest();

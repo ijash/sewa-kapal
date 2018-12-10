@@ -1,58 +1,40 @@
-today = new Date();
+async function authUser() {
+  const myInit = {
+    method: 'GET',
+    cache: 'default'
+  }
+  try {
+    const response = await fetch('/api/users/me', myInit);
+    userData = await response.json();
+  } catch {}
+}
+
+//main variables
+let today = new Date();
 today.year = today.getFullYear();
 today.month = today.getMonth();
 today.date = today.getDate();
 
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.parallax');
-  var instances = M.Parallax.init(elems);
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.modal');
-  var instances = M.Modal.init(elems);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('select');
-  var instances = M.FormSelect.init(elems);
-});
-
-// tooltip
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.tooltipped');
-  var instances = M.Tooltip.init(elems, {
+//Function Declarations
+//Materialize Init
+function materializeInit() {
+  M.Parallax.init(document.querySelectorAll('.parallax'));
+  M.Sidenav.init(document.querySelectorAll('.sidenav'));
+  M.Modal.init(document.querySelectorAll('.modal'));
+  M.FormSelect.init(document.querySelectorAll('select'));
+  M.Tooltip.init(document.querySelectorAll('.tooltipped'), {
     outDuration: 250,
     enterDelay: 500
   });
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.dropdown-trigger');
-  var instances = M.Dropdown.init(elems);
-});
-
-let httpReq = new XMLHttpRequest();
-//auth ajax
-let userData = null
-httpReq.open('GET', '/api/users/me');
-httpReq.onload = function() {
-  userData = JSON.parse(httpReq.responseText);
+  M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
+  M.Carousel.init(document.querySelectorAll('.carousel'));
 }
-httpReq.send();
-
 
 function changeAuthStatus() {
   if (!userData) {
-
-  } 
-  else {
+    //pass
+  } else {
     authStatus = document.getElementById('authStatus');
     authStatus.href = '/myaccount';
     authStatus.innerText = userData.name
@@ -62,42 +44,28 @@ function changeAuthStatus() {
   }
 }
 
-// supaya bisa multiple window.onload
-function addLoadEvent(func) {
-  let oldonload = window.onload;
-  if (typeof window.onload != 'function') {
-    window.onload = func;
-  } else {
-    window.onload = function() {
-      if (oldonload) {
-        oldonload();
-      }
-      func();
-    }
-  }
-}
-addLoadEvent(changeAuthStatus);
-//number formatter
-const currencyFormat = new Intl.NumberFormat('id-ID', {
-  style: 'currency',
-  currency: 'IDR',
-  currencyDisplay : 'symbol'
-});
-function currFormat(value){
+function currFormat(value) {
+  const currencyFormat = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    currencyDisplay: 'symbol'
+  });
   if (!value) return 'Unavailable';
   else return currencyFormat.format(value);
 }
-const numberFormat = new Intl.NumberFormat('id-ID', {
-  style: 'decimal',
-  useGrouping: true
-});
 
-function numFormat(value, optionalSuffix){
+function numFormat(value, optionalSuffix) {
+  const numberFormat = new Intl.NumberFormat('id-ID', {
+    style: 'decimal',
+    useGrouping: true
+  });
   optionalSuffix = optionalSuffix || ''
   if (!value) return '(unavailable)';
-  else return numberFormat.format(value)+optionalSuffix;
+  else return numberFormat.format(value) + optionalSuffix;
 }
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.carousel');
-  var instances = M.Carousel.init(elems);
+
+document.addEventListener('DOMContentLoaded', async function() {
+  await authUser();
+  await materializeInit();
+  await changeAuthStatus()
 });

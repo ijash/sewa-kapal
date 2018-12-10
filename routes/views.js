@@ -20,8 +20,8 @@ router.get('/template', async (req, res) => {
   res.render('./home/template-materialize', pageVariables);
 });
 
-router.get('/admin',auth, async (req, res) => {
-  const pageVariables = Object.assign(defaultSiteValues, {  upPageLevel: '../../' });
+router.get('/admin', auth, async (req, res) => {
+  const pageVariables = Object.assign(defaultSiteValues, { upPageLevel: '../../' });
   res.render('./admin/admin_nav', pageVariables);
 });
 
@@ -54,7 +54,6 @@ router.get('/categories', async (req, res) => {
 
 
   res.render('./home/categories', pageVariables);
-
 
 });
 

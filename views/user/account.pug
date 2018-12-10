@@ -1,6 +1,9 @@
 doctype html
 html(lang="en")
   include ../includes/head.pug
+  include ../includes/loginmodal.pug
+  include ../includes/script.pug
+  script(defer src=upPageLevel+'public/js/user_page.js')
   title Sewa Kapal
   body
     include ../includes/header.pug 
@@ -28,9 +31,6 @@ html(lang="en")
         button.waves-effect.waves-light.btn( class= `${colorTheme}`)#logout logout
       br
     include ../includes/footer.pug
-    include ../includes/loginmodal.pug
-    include ../includes/script.pug   
-    script(src=upPageLevel+'public/js/user_page.js')
 
       
 
