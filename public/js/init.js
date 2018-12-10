@@ -1,15 +1,26 @@
+//main variables
+let userData = null;
+
 async function authUser() {
   const myInit = {
     method: 'GET',
-    cache: 'default'
+    cache: 'default',
+    credentials: "same-origin"
   }
+  
+if (!(document.cookie.indexOf('x_auth_token')<0)){
   try {
     const response = await fetch('/api/users/me', myInit);
     userData = await response.json();
-  } catch {}
+  } catch (ex) {
+    console.log(ex);
+  }
+}
 }
 
-//main variables
+
+// console.log((!userData));
+
 let today = new Date();
 today.year = today.getFullYear();
 today.month = today.getMonth();

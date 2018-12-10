@@ -31,7 +31,7 @@ async function delBoat(idBoat){
     headers: {"Content-Type": "application/json"},
     referrer: "no-referrer"
     }
-  const response = await fetch('/api/rentals/'+idBoat,myInit)
+  const response = await fetch('/api/ships/'+idBoat,myInit)
   const json = await response.json();
   location.reload(true)
 }

@@ -118,30 +118,11 @@ html(lang="en")
           br
           br
           br
-        
-  // Modal Structure
-#modal_login.modal
-  .modal-content
-    h4.header.center.dark-text.text-lighten-2 Login
-    form(action=loginAction, method="post")
-      .container
-        label(for='uname')
-          b E-mail
-        input(type='text' placeholder='Enter E-mail' name='email' required='')
-        label(for='psw')
-          b Password
-        input(type='password' placeholder='Enter Password' name='password' required='')
-        p
-          label
-            input(type="checkbox")
-            span Ingat saya.
-            button(type='submit').waves-light.btn.right Login
-            
-              
-
-        a(href=registrasi).left Belum punya akun?
-        a.modal-close.waves-effect.waves-light.btn-flat(href='#').right  Cancel
-    .modal-footer
+        br
+        .center
+          a(href="/admin") Kembali ke Menu
+          div(style="margin-top: 50px;")
+                  
   script(src='/public/js/jquery-3.3.1.min.js')
   script(src='/public/js/materialize.js')
   script(type='text/javascript' src='/public/js/init.js')
