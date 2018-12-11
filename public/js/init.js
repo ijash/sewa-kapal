@@ -1,33 +1,29 @@
 //main variables
 let userData = null;
 
+let today = new Date();
+today.year = today.getFullYear();
+today.month = today.getMonth();
+today.date = today.getDate();
+
+//Function Declarations
+// auth user
 async function authUser() {
   const myInit = {
     method: 'GET',
     cache: 'default',
     credentials: "same-origin"
   }
-  
-if (!(document.cookie.indexOf('x_auth_token')<0)){
-  try {
-    const response = await fetch('/api/users/me', myInit);
-    userData = await response.json();
-  } catch (ex) {
-    console.log(ex);
+  if (!(document.cookie.indexOf('x_auth_token') < 0)) {
+    try {
+      const response = await fetch('/api/users/me', myInit);
+      userData = await response.json();
+    } catch (ex) {
+      console.log(ex);
+    }
   }
 }
-}
 
-
-// console.log((!userData));
-
-let today = new Date();
-today.year = today.getFullYear();
-today.month = today.getMonth();
-today.date = today.getDate();
-
-
-//Function Declarations
 //Materialize Init
 function materializeInit() {
   M.Parallax.init(document.querySelectorAll('.parallax'));
@@ -44,7 +40,7 @@ function materializeInit() {
 
 function changeAuthStatus() {
   if (!userData) {
-    //pass
+    console.log('please login...')
   } else {
     authStatus = document.getElementById('authStatus');
     authStatus.href = '/myaccount';
@@ -78,5 +74,5 @@ function numFormat(value, optionalSuffix) {
 document.addEventListener('DOMContentLoaded', async function() {
   await authUser();
   await materializeInit();
-  await changeAuthStatus()
+  await changeAuthStatus();
 });
