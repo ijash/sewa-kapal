@@ -8,7 +8,7 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) { // define target path
-    cb(null, config.get('img-cdn'));
+    cb(null, config.get('img'));
   },
   filename: function(req, file, cb) {
     cb(null, `${file.originalname}`); // define saved file name
