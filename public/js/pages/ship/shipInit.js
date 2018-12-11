@@ -26,7 +26,7 @@ function loadShip() {
         </div>
         <div class="card-content">
         <span class="card-title activator ${htmlColor}-text text-darken-4" id="nama"><h5 class="truncate"><p class="flow-text">-</p></h5></span>
-          <p><a id="shipId" class="btn ${htmlColor}" href="#">Detail</a></p>
+          <p><a id="shipId" class="btn ${htmlColor} tooltipped" data-position="bottom" data-tooltip="Lihat detail" href="#">Detail</a></p>
         </div>
         <div class="card-reveal"><span class="card-title ${htmlColor}-text text-darken-4" id="model">-<i class="material-icons right">close</i></span>
           <p class="${htmlColor}-text text-darken-4" id="tipe">-</p>
