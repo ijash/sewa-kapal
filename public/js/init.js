@@ -42,7 +42,7 @@ function changeAuthStatus() {
   if (!userData) {
     console.log('please login...')
   } else {
-    authStatus = document.getElementById('authStatus');
+    let authStatus = document.getElementById('authStatus');
     authStatus.href = '/myaccount';
     authStatus.innerText = userData.name
     authStatusMobile = document.getElementById('authStatusMobile');

@@ -1,4 +1,5 @@
 const express = require('express');
+const config = require('config');
 const rentCheck = require('../middleware/rentCheck');
 const _ = require('lodash');
 const multer = require("multer");
@@ -7,7 +8,7 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) { // define target path
-    cb(null, './public/img/ships');
+    cb(null, config.get('img-cdn'));
   },
   filename: function(req, file, cb) {
     cb(null, `${file.originalname}`); // define saved file name
@@ -60,10 +61,10 @@ router.post('/', upload.single("picture"), async (req, res) => { // tambahin aut
 
 });
 
-router.put('/:boatId', async (req, res) => {//tambahin is admin nanti
+router.put('/:boatId', async (req, res) => { //tambahin is admin nanti
   let boat = await Ship.findById(req.params.boatId);
   if (!boat) return res.status(404).send('The boat with the given ID was not found.');
-  Object.assign(boat,req.body)
+  Object.assign(boat, req.body)
   const result = await boat.save();
   res.send(result);
 });

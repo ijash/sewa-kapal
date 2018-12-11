@@ -3,6 +3,7 @@ html(lang="en")
   include ../includes/head.pug
   include ../includes/loginmodal.pug
   include ../includes/script.pug 
+  script(defer src= '../../public/js/pages/rental/inputRental.js')
   title Sewa Kapal
   body
     include ../includes/header.pug
@@ -37,48 +38,11 @@ html(lang="en")
         br
           
         br
-
-
-
-    include ../includes/footer.pug  
+    
     script.
       let shipId = "#{shipId}"
-      let shipReq = new XMLHttpRequest();
-      let shipData = null
-      shipReq.open('GET', '/api/ships/'+shipId);
-      shipReq.onload = function() {
-        shipData = JSON.parse(shipReq.responseText);
-        rentalFeeCalc()
-        document.getElementById('shipValueId').value = shipData._id;
-        document.getElementById('userDataId').value = userData._id;
-      }
-      shipReq.send();
-
-      let dateString = null;
-      let inpDate =null;
-
-      document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.datepicker');
-        var instances = M.Datepicker.init(elems, {
-          format: 'yyyy-mm-dd',
-          maxDate: new Date(today.year + 3,today.month,today.date+2),
-          minDate: new Date(today.year,today.month,today.date +2),
-          setDefaultDate: true,
-          defaultDate: new Date(Date.now()),
-          yearRange: [today.year, today.year+3]
-          });
-          document.getElementById('tglKembali').addEventListener("change", rentalFeeCalc);
-          
-
-      });
+    include ../includes/footer.pug
       
-      function rentalFeeCalc(){
-          dateString = document.getElementById('tglKembali').value
-          inpDate= new Date(dateString.match(/^(\d)+/)[0],(parseInt(dateString.match(/(?<=-)(\d)+(?=-)/)[0]) -1),dateString.match(/(?<=-)(\d+)$/)[0]);
-          let diffDays = Math.round(Math.abs((inpDate.getTime() - today.getTime()) / (86400000/*one day in ms*/)));
-          
-          document.getElementById('priceLabel').innerHTML = currFormat(diffDays * shipData.price)
-        };
   
 
     

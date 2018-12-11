@@ -1,6 +1,7 @@
 doctype html
 html(lang="en")
   include ../includes/head.pug
+  script(defer src= '../../public/js/pages/admin/rentals.js')
   title Admin Rental - #{judul}
   body
     include ../includes/header.pug
@@ -21,99 +22,6 @@ html(lang="en")
           a(href="/admin") Kembali ke Menu
       script.
         let upLevel = "#{upPageLevel}";
-
-        function addLoadEvent(func) {
-          let oldonload = window.onload;
-          if (typeof window.onload != 'function') {
-            window.onload = func;
-          } else {
-            window.onload = function() {
-              if (oldonload) {
-                oldonload();
-              }
-              func();
-            }
-          }
-        }    
-        rentData = null;
-        let rentReq = new XMLHttpRequest();
-        let userRentData = null;
-        rentReq.open('GET', '/api/rentals/');
-        rentReq.onload = function () {
-          rentData = JSON.parse(rentReq.responseText);
-        }
-
-        rentReq.send();
-        async function confirmRent(idRental){
-          const myInit = {
-            method: 'PUT',
-            cache: 'default' ,
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({isPaid: true}),
-            referrer: "no-referrer"
-            }
-          const response = await fetch('/api/rentals/'+idRental,myInit)
-          const json = await response.json();
-          location.reload(true)
-        }
-
-        async function closeRent(idRental){
-          const myInit = {
-            method: 'PUT',
-            cache: 'default' ,
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({isActive: false}),
-            referrer: "no-referrer"
-            }
-          const response = await fetch('/api/rentals/'+idRental,myInit)
-          const json = await response.json();
-          location.reload(true)
-        }
-
-        async function delRent(idRental){
-          const myInit = {
-            method: 'DELETE',
-            cache: 'default' ,
-            headers: {"Content-Type": "application/json"},
-            referrer: "no-referrer"
-            }
-          const response = await fetch('/api/rentals/'+idRental,myInit)
-          const json = await response.json();
-          location.reload(true)
-        }
-
-        addLoadEvent(() =>{
-          
-          let rental = document.getElementById('rental-body');
-          for (let i in rentData) {
-
-            dataRow = `
-              <tr>
-                <td> 
-                  <a href="${upLevel}myaccount/rentals/${rentData[i]._id}">
-                    <p>${rentData[i].user.email}</p>
-                  </a>
-                </td>
-                <td>
-                    ${(rentData[i].isPaid === false && rentData[i].isActive === true? '<p>Belum bayar</p><button onclick="confirmRent(\''+rentData[i]._id+'\')" class="btn btn-small waves-light waves-effect" id="btnConfirm">konfirmasi</button>': '<p class="">Selesai...</p>')}
-                </td>
-                <td>
-                  ${(rentData[i].isActive?'<p>Aktif..</p><button onclick="closeRent(\''+rentData[i]._id+'\')" class="btn btn-small waves-light waves-effect" id="btnConfirm">tutup</button>':'Selesai...')}
-                </td>
-                <td>
-                  ${rentData[i].dateReturned.slice(0,-14)}
-                </td>
-                <td>
-                  <button onclick="delRent('${rentData[i]._id}')" class="btn red darken-4" id="btnDel">
-                    <i class="material-icons")>delete</i>
-                  </button>
-                  
-                </td>
-              </tr>
-              `;
-              rental.insertAdjacentHTML('beforeend', dataRow)
-          }
-        })
 
         
         

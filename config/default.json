@@ -1,5 +1,7 @@
 {
   "jwtPrivateKey": "sk_jwtkey",
   "dbRemote":"mongodb://192.168.0.4/sewakapal",
-  "db":"mongodb://localhost/sewakapal"
+  "db":"mongodb://localhost/sewakapal",
+  "img-cdn":"192.168.0.3:21/public/img/ships",
+  "img":"./public/img/ships"
 }

@@ -13,9 +13,12 @@ function loadShip() {
   let edit = "#{edit}";
 
   for (i in shipData) {
-    row.insertAdjacentHTML("afterbegin",
-      `<div class="col s3" style="min-width: 15em;">
-      <div class="card z-depth-2">
+    if (shipData[i].available === false) {
+
+    } else {
+      row.insertAdjacentHTML("afterbegin",
+        `<div class="col s3" style="min-width: 15em;">
+        <div class="card z-depth-2">
         <div class="card-image waves-effect waves-block waves-light">
 
             <img class="activator responsive-img" id="gambar" src="/" alt="Boat" onerror="this.onerror=null;this.src='/public/img/site/noshippic.png';" style="width:100%;height:14.8em;object-fit: cover;" />
@@ -34,14 +37,15 @@ function loadShip() {
       </div>
     </div>`);
 
-    document.getElementById('shipId').href = "categories/" + shipData[i]._id;
-    document.getElementById('gambar').src = shipData[i].picture;
-    document.getElementById('nama').firstChild.textContent = shipData[i].name;
-    document.getElementById('model').firstChild.textContent = shipData[i].model;
-    document.getElementById('tipe').firstChild.textContent = `Tipe Kapal: ${shipData[i].type}`;
-    document.getElementById('harga').firstChild.textContent = `Harga Kapal: ${shipData[i].price}`;
-    document.getElementById('tanggalPembuatan').firstChild.textContent = `Tanggal Pembuatan: ${shipData[i].details.yearOfManufactured}`;
-    document.getElementById('panjangKapal').firstChild.textContent = `Panjang Kapal: ${shipData[i].details.lengthOverall}`
+      document.getElementById('shipId').href = "categories/" + shipData[i]._id;
+      document.getElementById('gambar').src = shipData[i].picture;
+      document.getElementById('nama').firstChild.textContent = shipData[i].name;
+      document.getElementById('model').firstChild.textContent = shipData[i].model;
+      document.getElementById('tipe').firstChild.textContent = `Tipe Kapal: ${shipData[i].type}`;
+      document.getElementById('harga').firstChild.textContent = `Harga Kapal: ${shipData[i].price}`;
+      document.getElementById('tanggalPembuatan').firstChild.textContent = `Tanggal Pembuatan: ${shipData[i].details.yearOfManufactured}`;
+      document.getElementById('panjangKapal').firstChild.textContent = `Panjang Kapal: ${shipData[i].details.lengthOverall}`
+    }
   }
 }
 
