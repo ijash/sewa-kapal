@@ -42,9 +42,9 @@ function loadShip() {
       document.getElementById('nama').firstChild.textContent = shipData[i].name;
       document.getElementById('model').firstChild.textContent = shipData[i].model;
       document.getElementById('tipe').firstChild.textContent = `Tipe Kapal: ${shipData[i].type}`;
-      document.getElementById('harga').firstChild.textContent = `Harga Kapal: ${shipData[i].price}`;
+      document.getElementById('harga').firstChild.textContent = 'Harga Kapal: ' + currFormat(shipData[i].price);
       document.getElementById('tanggalPembuatan').firstChild.textContent = `Tanggal Pembuatan: ${shipData[i].details.yearOfManufactured}`;
-      document.getElementById('panjangKapal').firstChild.textContent = `Panjang Kapal: ${shipData[i].details.lengthOverall}`
+      document.getElementById('panjangKapal').firstChild.textContent = 'Panjang Kapal: ' + numFormat(shipData[i].details.lengthOverall, ' m')
     }
   }
 }

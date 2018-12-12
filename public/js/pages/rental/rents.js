@@ -34,7 +34,7 @@ let x = setInterval(function() {
 function loadRent() {
   document.getElementById('customer').firstChild.textContent = rentData.customer.name;
   document.getElementById('alamat').firstChild.textContent = rentData.customer.deliveryLocation;
-  document.getElementById('biaya').firstChild.textContent = currFormat(rentData.rentalFee) + (rentData.isPaid ? '  (Lunas)' : '  (Belum dibayar)');
+  document.getElementById('biaya').firstChild.textContent = currFormat(rentData.rentalFee) + (rentData.isPaid ? '  (Lunas)' : '  (Silahkan menyelesaikan transaksi dengan mentransfer ke rekening BCA 8972376548)');
   document.getElementById('kapal').firstChild.textContent = rentData.ship.name;
   document.getElementById("kapal").href = "../../categories/" + rentData.ship._id;
   document.getElementById('phone').firstChild.textContent = rentData.customer.phone;
