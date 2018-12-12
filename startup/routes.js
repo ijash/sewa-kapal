@@ -26,7 +26,7 @@ module.exports = function(app) {
   app.use('/api/ships', ships);
   app.use('/api/rentals', rentals);
   app.use('', views);
-  app.use((req, res, next) => {
-    res.redirect('/error/404/?details=Nothing to do here...');
-  });
+  // app.use((req, res, next) => {
+  //   res.redirect('/error/404/?details=Nothing to do here...');
+  // });
 };

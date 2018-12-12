@@ -82,7 +82,7 @@ router.get('/register', async (req, res) => {
 
 router.get('/error/:code', async (req, res) => {
   let currentStatus = req.params.code
-  statusCodeList = {
+  let statusCodeList = {
     301: 'Moved Permanently',
     400: 'Bad Request',
     403: 'Forbidden',

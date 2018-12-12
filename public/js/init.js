@@ -24,6 +24,43 @@ async function authUser() {
   }
 }
 
+function getLoginForm() {
+  return {
+    email: document.getElementById('txt_email').value,
+    password: document.getElementById('txt_pw').value,
+    remember: document.getElementById('rememberChk').checked,
+  }
+};
+async function loginAction() {
+  let url = '/api/auth'
+  let userLoginForm = getLoginForm();
+  let payload = {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    referrer: "no-referrer",
+    body: JSON.stringify(userLoginForm)
+  }
+  try {
+    console.log(getLoginForm());
+    
+    let response = await fetch(url, payload);
+    if (!response.ok) {
+      throw await response.text();
+    } else {
+      // let sucess = await response.text;
+      window.location.reload();
+    }
+
+  } catch (ex) {
+    alert(ex);
+
+  }
+
+}
+
 //Materialize Init
 function materializeInit() {
   M.Parallax.init(document.querySelectorAll('.parallax'));
