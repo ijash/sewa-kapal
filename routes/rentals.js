@@ -1,6 +1,6 @@
 const auth = require('../middleware/auth');
 const rentCheck = require('../middleware/rentCheck');
-const { Rental, validate,} = require('../models/rental');
+const { Rental, validate, } = require('../models/rental');
 const { Ship } = require('../models/ship');
 const { User } = require('../models/user');
 const mongoose = require('mongoose');
@@ -10,27 +10,27 @@ const router = express.Router();
 
 Fawn.init(mongoose);
 
-router.get('/', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
+router.get('/', auth, rentCheck, async (req, res) => { //tambahin is admin nanti
   const rentals = await Rental.find().sort('-dateOut');
   res.send(rentals);
 });
 
-router.get('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
+router.get('/:rentId', auth, rentCheck, async (req, res) => { //tambahin is admin nanti
   const rental = await Rental.findById(req.params.rentId).sort('-dateOut');
   if (!rental) return res.status(404).send('The rental with the given ID was not found.');
   res.send(rental);
 });
 
-router.delete('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
+router.delete('/:rentId', auth, rentCheck, async (req, res) => { //tambahin is admin nanti
   const rental = await Rental.findByIdAndRemove(req.params.rentId);
   if (!rental) return res.status(404).send('The rental with the given ID was not found.');
   res.send(rental);
 });
 
-router.put('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin nanti
+router.put('/:rentId', auth, rentCheck, async (req, res) => { //tambahin is admin nanti
   let rental = await Rental.findById(req.params.rentId);
   if (!rental) return res.status(404).send('The rental with the given ID was not found.');
-  Object.assign(rental,req.body)
+  Object.assign(rental, req.body)
   const result = await rental.save();
   res.send(result);
 });
@@ -38,25 +38,25 @@ router.put('/:rentId', auth, rentCheck, async (req, res) => {//tambahin is admin
 router.post('/', auth, async (req, res) => {
   let rentDate = new Date(Date.now())
   let returnDate = new Date(req.body.dateReturned)
-  
+
   const { error } = validate(req.body);
   if (error) return res.redirect("../error/400?details=Error: " + error.details[0].message);
-  
+
   const ship = await Ship.findById(req.body.shipId);
   if (!ship) return res.redirect("../error/400?details=Invalid ship.....");
-  
-  const rentedShip = await Ship.find({_id:req.body.shipId, available: false}).select('name available _id');
-  if (rentedShip.length>0) res.status(503).send('Ship must be available or not being used.');
-  
-  const user = await User.findById(req.body.userId);//kayaknya salah, harusnya ambil di JWT
+
+  const rentedShip = await Ship.find({ _id: req.body.shipId, available: false }).select('name available _id');
+  if (rentedShip.length > 0) return res.redirect("../error/400?details=Invalid ship.....");
+
+  const user = await User.findById(req.body.userId); //kayaknya salah, harusnya ambil di JWT
   if (!user) return res.redirect("../error/400?details=Invalid user.....");
 
   rentalFeeResult = (() => {
-    let diffDays = Math.round(Math.abs((rentDate.getTime() - returnDate.getTime()) / 86400000/*one day in ms*/));
+    let diffDays = Math.round(Math.abs((rentDate.getTime() - returnDate.getTime()) / 86400000 /*one day in ms*/ ));
     return diffDays * ship.price
   })();
-  
-  
+
+
   let rental = new Rental({
     user: {
       name: user.name,
@@ -90,11 +90,10 @@ router.post('/', auth, async (req, res) => {
       })
       .run();
     // res.status(201).send(rental);
-    res.redirect('../../../myaccount/rentals/'+rental.id)
-  }
-  catch (ex) {
+    res.redirect('../../../myaccount/rentals/' + rental.id)
+  } catch (ex) {
     res.status(500).send('something failed..');
-    
+
   }
 
 });
