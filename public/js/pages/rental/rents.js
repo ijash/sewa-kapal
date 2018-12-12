@@ -23,7 +23,7 @@ let x = setInterval(function() {
   let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((distance % (1000 * 60)) / 1000);
   // Output the result in an element with id="demo"
-  document.getElementById("bayar").firstChild.textContent = (rentData.isPaid ? 'Sudah dibayar' : days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
+  document.getElementById("bayar").firstChild.textContent = (rentData.isPaid ? 'Sudah dibayar' : hours + "h " + minutes + "m " + seconds + "s ");
   // If the count down is over, write some text
   if (distance < 0) {
     clearInterval(x);
@@ -32,9 +32,11 @@ let x = setInterval(function() {
 }, 1000);
 
 function loadRent() {
+  document.getElementById('biaya').insertAdjacentHTML('beforeEnd','<p style="margin: 0px;font-size: 80%;">'+(rentData.isPaid ? '  Lunas' : '  Silahkan menyelesaikan transaksi dengan mentransfer ke rekening BCA 8972376548')+'</p>')
+
   document.getElementById('customer').firstChild.textContent = rentData.customer.name;
   document.getElementById('alamat').firstChild.textContent = rentData.customer.deliveryLocation;
-  document.getElementById('biaya').firstChild.textContent = currFormat(rentData.rentalFee) + (rentData.isPaid ? '  (Lunas)' : '  (Silahkan menyelesaikan transaksi dengan mentransfer ke rekening BCA 8972376548)');
+  document.getElementById('biaya').firstChild.textContent = currFormat(rentData.rentalFee);
   document.getElementById('kapal').firstChild.textContent = rentData.ship.name;
   document.getElementById("kapal").href = "../../categories/" + rentData.ship._id;
   document.getElementById('phone').firstChild.textContent = rentData.customer.phone;

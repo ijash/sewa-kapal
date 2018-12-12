@@ -10,14 +10,14 @@ async function shipReq() {
 function loadShip() {
   let row = document.getElementById('row');
   let htmlColor = "#{colorThemeText}";
-  let edit = "#{edit}";
-
+  // let edit = "#{edit}";
+ 
   for (i in shipData) {
     if (shipData[i].available === false) {
 
     } else {
       row.insertAdjacentHTML("afterbegin",
-        `<div class="col s3" style="min-width: 15em;">
+        `<div class="col s12 m6 l4" style="min-width: 15em;">
         <div class="card z-depth-2">
         <div class="card-image waves-effect waves-block waves-light">
 
