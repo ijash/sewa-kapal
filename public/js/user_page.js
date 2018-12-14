@@ -56,7 +56,7 @@ function userRentDetail() {
 // logout function
 let btnLogout = document.getElementById('logout')
 btnLogout.addEventListener("click", function() {
-  window.location.replace('api/auth/logout');
+  window.location.replace('../api/auth/logout');
 });
 
 document.addEventListener('DOMContentLoaded', async function() {
